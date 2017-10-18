@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickSortANDMergeSort", "NET.W.2017.Shklianik.01\QuickSortANDMergeSort.csproj", "{C32441CD-C616-4523-B571-EEF6FCFE1381}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C32441CD-C616-4523-B571-EEF6FCFE1381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C32441CD-C616-4523-B571-EEF6FCFE1381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C32441CD-C616-4523-B571-EEF6FCFE1381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C32441CD-C616-4523-B571-EEF6FCFE1381}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29D8AA09-EAF0-4E2B-BFE8-DD92C1249458}
+	EndGlobalSection
+EndGlobal
