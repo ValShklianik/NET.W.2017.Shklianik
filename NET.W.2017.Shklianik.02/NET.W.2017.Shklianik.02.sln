@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitFiltrationsTests", "Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitOperationsTests", "BitOperationsTests\BitOperationsTests.csproj", "{6760420B-5A8B-4217-A04D-358717098FB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindNthRootNewton", "FindNthRootNewton\FindNthRootNewton.csproj", "{00D1435B-2F68-4809-A0EC-B0C379389861}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindNthRootNewtonTests", "FindNthRootNewtonTests\FindNthRootNewtonTests.csproj", "{B329714F-EF01-46D3-AAE2-2C4CB45B3DCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{6760420B-5A8B-4217-A04D-358717098FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6760420B-5A8B-4217-A04D-358717098FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6760420B-5A8B-4217-A04D-358717098FB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00D1435B-2F68-4809-A0EC-B0C379389861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00D1435B-2F68-4809-A0EC-B0C379389861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00D1435B-2F68-4809-A0EC-B0C379389861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00D1435B-2F68-4809-A0EC-B0C379389861}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B329714F-EF01-46D3-AAE2-2C4CB45B3DCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B329714F-EF01-46D3-AAE2-2C4CB45B3DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B329714F-EF01-46D3-AAE2-2C4CB45B3DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B329714F-EF01-46D3-AAE2-2C4CB45B3DCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
