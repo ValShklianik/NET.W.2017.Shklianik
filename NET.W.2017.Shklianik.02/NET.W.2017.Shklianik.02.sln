@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitOperations.Tests", "UnitTestProject1\BitOperations.Tests.csproj", "{7DE19A54-AA9A-4432-B618-CD31E075F6E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitOperations", "BitOperaations\BitOperations.csproj", "{C7BB0E07-97C8-4C6C-892C-3DA87586128B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DE19A54-AA9A-4432-B618-CD31E075F6E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE19A54-AA9A-4432-B618-CD31E075F6E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE19A54-AA9A-4432-B618-CD31E075F6E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE19A54-AA9A-4432-B618-CD31E075F6E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7BB0E07-97C8-4C6C-892C-3DA87586128B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7BB0E07-97C8-4C6C-892C-3DA87586128B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7BB0E07-97C8-4C6C-892C-3DA87586128B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7BB0E07-97C8-4C6C-892C-3DA87586128B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E86F7D5-2C67-40A6-AC8C-C0A0F4CE72D9}
+	EndGlobalSection
+EndGlobal
