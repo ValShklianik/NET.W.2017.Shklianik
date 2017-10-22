@@ -17,8 +17,10 @@ namespace DigitFiltrations.Tests
             Task4 task4 = new Task4();
             List<int> list = new List<int> { 1, 3, 7, 55, 4, 15, 56, 253, 33 };
             int digit = 5;
-
-            Assert.Fail();
+            List<int> expected = new List<int> { 55,  15, 56, 253 };
+            List<int> actual = task4.FilterDigit(list, digit);
+            // Assert.AreEqual(actual.Count,expected.Count);
+            Assert.IsTrue(actual.SequenceEqual(expected));
         }
     }
 }
