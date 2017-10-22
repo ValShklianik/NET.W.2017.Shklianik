@@ -1,20 +1,52 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BitOperations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BitOperations.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class Task1Tests
     {
-        [TestMethod()]
-        public void InsertNumberTest()
+        [TestMethod]
+        public void InsertNumber_InsertFrom15To8FromBit3ToBit8_120Expected()
         {
-            Assert.Fail();
+            Task1 task1 = new Task1();
+            int numberSource = 8;
+            int numberIn = 15;
+            byte j = 8;
+            byte i = 3;
+            int expected = 120;
+
+            int actual = task1.InsertNumber(numberSource, numberIn, j, i);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void InsertNumber_InsertFrom15To8FromBit0ToBit0_9Expected()
+        {
+            Task1 task1 = new Task1();
+            int numberSource = 8;
+            int numberIn = 15;
+            byte j = 0;
+            byte i = 0;
+            int expected = 9;
+
+            int actual = task1.InsertNumber(numberSource, numberIn, j, i);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void InsertNumber_InsertFrom15To15FromBit0ToBit0_15Expected()
+        {
+            Task1 task1 = new Task1();
+            int numberSource = 15;
+            int numberIn = 15;
+            byte j = 0;
+            byte i = 0;
+            int expected = 15;
+
+            int actual = task1.InsertNumber(numberSource, numberIn, j, i);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

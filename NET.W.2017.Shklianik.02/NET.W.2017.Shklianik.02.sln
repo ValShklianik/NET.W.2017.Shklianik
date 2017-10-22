@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitOperations.Tests", "UnitTestProject1\BitOperations.Tests.csproj", "{7DE19A54-AA9A-4432-B618-CD31E075F6E2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitOperations", "BitOperaations\BitOperations.csproj", "{C7BB0E07-97C8-4C6C-892C-3DA87586128B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NextBiggerNumber", "NextBiggerNumber\NextBiggerNumber.csproj", "{77A4D450-ADA9-4EB9-9D51-F91E9C51562C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NextBiggerNumberTests", "NextBiggerNumberTests\NextBiggerNumberTests.csproj", "{89591452-7E34-48B2-8DAC-1F8EF036E0B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitFiltrations", "DigitFiltrations\DigitFiltrations.csproj", "{40D0CEF8-711D-4CA2-8BF2-F4AE0E2C7477}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitFiltrationsTests", "DigitFiltrationsTests\DigitFiltrationsTests.csproj", "{17BD7880-6664-4157-AABC-46DE09DFCA29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitOperationsTests", "BitOperationsTests\BitOperationsTests.csproj", "{6760420B-5A8B-4217-A04D-358717098FB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7DE19A54-AA9A-4432-B618-CD31E075F6E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DE19A54-AA9A-4432-B618-CD31E075F6E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DE19A54-AA9A-4432-B618-CD31E075F6E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DE19A54-AA9A-4432-B618-CD31E075F6E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C7BB0E07-97C8-4C6C-892C-3DA87586128B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C7BB0E07-97C8-4C6C-892C-3DA87586128B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7BB0E07-97C8-4C6C-892C-3DA87586128B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +33,18 @@ Global
 		{89591452-7E34-48B2-8DAC-1F8EF036E0B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89591452-7E34-48B2-8DAC-1F8EF036E0B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89591452-7E34-48B2-8DAC-1F8EF036E0B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40D0CEF8-711D-4CA2-8BF2-F4AE0E2C7477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40D0CEF8-711D-4CA2-8BF2-F4AE0E2C7477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40D0CEF8-711D-4CA2-8BF2-F4AE0E2C7477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40D0CEF8-711D-4CA2-8BF2-F4AE0E2C7477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17BD7880-6664-4157-AABC-46DE09DFCA29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17BD7880-6664-4157-AABC-46DE09DFCA29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17BD7880-6664-4157-AABC-46DE09DFCA29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17BD7880-6664-4157-AABC-46DE09DFCA29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6760420B-5A8B-4217-A04D-358717098FB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6760420B-5A8B-4217-A04D-358717098FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6760420B-5A8B-4217-A04D-358717098FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6760420B-5A8B-4217-A04D-358717098FB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
