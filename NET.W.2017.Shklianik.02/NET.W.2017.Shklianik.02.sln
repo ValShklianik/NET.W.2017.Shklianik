@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitOperations.Tests", "Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitOperations", "BitOperaations\BitOperations.csproj", "{C7BB0E07-97C8-4C6C-892C-3DA87586128B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NextBiggerNumber", "NextBiggerNumber\NextBiggerNumber.csproj", "{77A4D450-ADA9-4EB9-9D51-F91E9C51562C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NextBiggerNumberTests", "NextBiggerNumberTests\NextBiggerNumberTests.csproj", "{89591452-7E34-48B2-8DAC-1F8EF036E0B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{C7BB0E07-97C8-4C6C-892C-3DA87586128B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7BB0E07-97C8-4C6C-892C-3DA87586128B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7BB0E07-97C8-4C6C-892C-3DA87586128B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A4D450-ADA9-4EB9-9D51-F91E9C51562C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A4D450-ADA9-4EB9-9D51-F91E9C51562C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A4D450-ADA9-4EB9-9D51-F91E9C51562C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A4D450-ADA9-4EB9-9D51-F91E9C51562C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89591452-7E34-48B2-8DAC-1F8EF036E0B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89591452-7E34-48B2-8DAC-1F8EF036E0B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89591452-7E34-48B2-8DAC-1F8EF036E0B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89591452-7E34-48B2-8DAC-1F8EF036E0B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
