@@ -121,6 +121,10 @@ namespace NextBiggerNumber.Tests
             long actual = task2.FindNextBiggerNumber(number);
             Assert.AreEqual(expected, actual);
         }
+
+
     }
+
+
 
 }
