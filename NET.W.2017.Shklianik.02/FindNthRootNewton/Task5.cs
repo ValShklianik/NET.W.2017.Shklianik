@@ -6,25 +6,35 @@ using System.Threading.Tasks;
 
 namespace FindNthRootNewton
 {
-    public class Task5
+    public static class Task5
     {
 
-        public double FindNthRoot(double n, double A, double eps)
+        #region FindNthRootMethods
+        public static double FindNthRoot(double a, int n, double prec)
         {
-            if (eps < 0)
+            if ((prec < 0) || (n < 0))
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException("Incorrect prec.");
             }
-            double x0 = A / n;
-            double x1 = (1 / n) * ((n - 1) * x0 + A / Math.Pow(x0, (int)n - 1));
-
-            while (Math.Abs(x1 - x0) > eps)
+            double supposition = Math.Round((a / n), 6);
+            double result = supposition;
+            result = ((n - 1) * result + (a / Math.Pow(result, n - 1))) / n;
+            while (Math.Abs(result - supposition) > prec)
             {
-                x0 = x1;
-                x1 = (1 / n) * ((n - 1) * x0 + A / Math.Pow(x0, (int)n - 1));
+                supposition = result;
+                result = ((n - 1) * result + (a / Math.Pow(result, n - 1))) / n;
             }
 
-            return x1;
+            int accuracy = 1;
+            double tempprec = prec;
+            while (tempprec < 1)
+            {
+                accuracy *= 10;
+                tempprec *= 10;
+            }
+
+            return Math.Floor((result * accuracy + 0.1)) / accuracy;
         }
+        #endregion
     }
 }
