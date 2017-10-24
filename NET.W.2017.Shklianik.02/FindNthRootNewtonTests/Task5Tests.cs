@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +10,7 @@ using static FindNthRootNewton.Task5;
 
 namespace FindNthRootNewton.Tests
 {
-    [TestClass()]
+    [TestFixture]
     public class Task5Tests
     {
         #region FindNthRootTests
@@ -24,6 +23,7 @@ namespace FindNthRootNewton.Tests
         [TestCase(0.0081, 4, 0.1, ExpectedResult = 0.3)]
         [TestCase(0.004241979, 9, 0.00000001, ExpectedResult = 0.545)]
 
+        [Test]
         public double FindNthRoot_Number_Degree_Precision(double number, int degree, double precision)
         {
             return Math.Round(FindNthRoot(number, degree, precision), 3);
@@ -36,7 +36,7 @@ namespace FindNthRootNewton.Tests
         public void FindNthRoot_Number_Degree_Precision_ArgumentOutOfRangeException(double number, int degree,
             double precision, double expected)
         {
-            NUnit.Framework.Assert.Throws<ArgumentOutOfRangeException>(() => FindNthRoot(number, degree, precision));
+            Assert.Throws<ArgumentOutOfRangeException>(() => FindNthRoot(number, degree, precision));
         }
         #endregion
 
