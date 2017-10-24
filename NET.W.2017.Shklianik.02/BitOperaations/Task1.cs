@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace BitOperations
 {
-    public class Task1
+    public static class Task1
     {
-        public int InsertNumber(int numberSource, int numberIn, byte j, byte i)
+        public static int InsertNumber(int numberSource, int numberIn, byte j, byte i)
         {
-            //i++;
-            //j++;
+            const int size = 32;
             int count = j - i + 1;
-            uint mask = (uint) ((~0) << 32 - count) >> 32 - count << i;
+            uint mask = (uint) ((~0) << size - count) >> size - count << i;
             numberIn = (int) ((numberIn << i) & (mask));
             mask = (uint)(~0 ^ mask);
             numberSource = numberSource << 32 - i;
             return (int)(numberSource & mask) | numberIn;
-            //return (int)mask;
         }
     }
 }
