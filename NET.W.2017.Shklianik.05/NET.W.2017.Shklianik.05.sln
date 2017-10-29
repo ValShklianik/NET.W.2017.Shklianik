@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.W.2017.Shklianik.05", "NET.W.2017.Shklianik.05\NET.W.2017.Shklianik.05.csproj", "{CE948DD9-7C86-40A1-849E-2C779F4052E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.W.2017.ShklianikTests", "NET.W.2017.ShklianikTests\NET.W.2017.ShklianikTests.csproj", "{51382958-A6A4-4052-9713-6236D31E43BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE948DD9-7C86-40A1-849E-2C779F4052E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE948DD9-7C86-40A1-849E-2C779F4052E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE948DD9-7C86-40A1-849E-2C779F4052E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE948DD9-7C86-40A1-849E-2C779F4052E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51382958-A6A4-4052-9713-6236D31E43BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51382958-A6A4-4052-9713-6236D31E43BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51382958-A6A4-4052-9713-6236D31E43BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51382958-A6A4-4052-9713-6236D31E43BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D99A31A2-8B9E-4854-872B-AFA334F55B9C}
+	EndGlobalSection
+EndGlobal
