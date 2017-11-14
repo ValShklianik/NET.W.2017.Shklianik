@@ -29,8 +29,8 @@ namespace BankSystem
             var repo = new FakeRepository();
             AccountService service = new AccountService(repo);
             service.OpenAccount("user", AccountType.Base, new AccountNumberCreator());
-            Console.WriteLine(repo.repository);
-            Console.Read();
+            //Console.WriteLine(repo.repository);
+            //Console.Read();
 
         }
 
