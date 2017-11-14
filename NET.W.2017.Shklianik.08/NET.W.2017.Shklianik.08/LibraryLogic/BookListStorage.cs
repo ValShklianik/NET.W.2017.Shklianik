@@ -55,10 +55,6 @@ namespace Book.Logic
             using (Stream stream = File.OpenWrite(path))
             {
                 var binaryFormatter = new BinaryFormatter();
-                /*foreach(var book in books)
-                {
-                    binaryFormatter.Serialize(stream, book);
-                }*/
                 binaryFormatter.Serialize(stream, books);
             }
         }
@@ -94,9 +90,9 @@ namespace Book.Logic
     public class BookStorageException : Exception
     {
         /// <inheritdoc />
-        public BookStorageException(string message) : base (message) { }
-
+        public BookStorageException(string message) : base(message)
+        {
+        }
     }
     #endregion !BookStorageException
 }
-

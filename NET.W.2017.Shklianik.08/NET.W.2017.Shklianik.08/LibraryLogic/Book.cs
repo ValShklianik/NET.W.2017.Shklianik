@@ -119,7 +119,7 @@ namespace Book.Logic
         }
 
         /// <summary>
-        /// PubLIsh house of the book.
+        /// Publish house of the book.
         /// </summary>
         /// <exception cref="ArgumentException">
         /// Thrown when <param name="value"/> error.
