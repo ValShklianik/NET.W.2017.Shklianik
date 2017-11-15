@@ -9,12 +9,14 @@ namespace BankSystem.Account
     public class AccountService
     {
         private IRepository repository;
+        private List<Account> accounts;
+        public enum AccountType { Base, Gold, Platinum }
+
         public AccountService(IRepository repository)
         {
             this.repository = repository;
+            accounts = (List<Account>)repository.Read();
         }
-
-        public enum AccountType { Base, Gold, Platinum }
 
         public void OpenAccount(string name, AccountType accountType, IAccountNumberCreator creator)
         {
@@ -34,6 +36,32 @@ namespace BankSystem.Account
                     account = new PlatinumAccount(accountNumber, name);
                     break;
             }
+
+            accounts.Add(account);
+            repository.Save(accounts);
+        }
+
+        public void Deposit(string accountNumber, decimal amount)
+        {
+            Account account = accounts?.Find(a => a.AccountNumber == accountNumber);
+            account.Deposit(amount);
+            repository.Save(accounts);
+
+
+        }
+
+        public void Withdraw(string accountNumber, decimal amount)
+        {
+            Account account = accounts?.Find(a => a.AccountNumber == accountNumber);
+            account.Withdraw(amount);
+            repository.Save(accounts);
+        }
+
+        public void DeleteAccount(string accountNumber)
+        {
+            Account account = accounts?.Find(a => a.AccountNumber == accountNumber);
+            accounts.Remove(account);
+            repository.Save(accounts);
         }
 
         public class AccountNumberCreator : IAccountNumberCreator
