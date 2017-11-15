@@ -27,7 +27,7 @@ namespace BankSystem.ConsoleUI
 
             //	var guid = new Guid();
 
-            var repo = new FakeRepository();
+            var repo = new FileRepository();
             AccountService service = new AccountService(repo);
             service.OpenAccount("user", AccountType.Base, new AccountNumberCreator());
             //Console.WriteLine(repo.repository);

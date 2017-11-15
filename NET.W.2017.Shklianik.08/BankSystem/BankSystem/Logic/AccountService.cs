@@ -10,18 +10,38 @@ namespace BankSystem.Account
     {
         private IRepository repository;
         private List<Account> accounts;
+        private static AccountService instance = null;
+        
         public enum AccountType { Base, Gold, Platinum }
 
-        public AccountService(IRepository repository)
+        private AccountService()
         {
-            this.repository = repository;
+            repository = new FileRepository("@repository.bin");
             accounts = (List<Account>)repository.Read();
+
         }
 
-        public void OpenAccount(string name, AccountType accountType, IAccountNumberCreator creator)
+        public AccountService GetService()
+        {
+            if (instance == null)
+            {
+                instance = new AccountService();
+            }
+
+            return instance;
+        }
+
+        public string OpenAccount(string name, AccountType accountType, IAccountNumberCreator creator)
         {
             Account account = null;
             string accountNumber = creator.Create();
+            Account accountInList = accounts?.Find(a => a.AccountNumber == accountNumber);
+
+            while (accountInList != null)
+            {
+                accountNumber = creator.Create();
+                accountInList = accounts?.Find(a => a.AccountNumber == accountNumber);
+            }
             switch (accountType)
             {
                 case AccountType.Base:
@@ -39,6 +59,8 @@ namespace BankSystem.Account
 
             accounts.Add(account);
             repository.Save(accounts);
+
+            return accountNumber;
         }
 
         public void Deposit(string accountNumber, decimal amount)
