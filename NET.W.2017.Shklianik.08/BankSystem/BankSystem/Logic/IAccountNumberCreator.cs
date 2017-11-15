@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankSystem.Logic
+namespace BankSystem.Account
 {
-    interface IAccountNumberCreator
+    public interface IAccountNumberCreator
     {
+        string Create();
     }
 }
