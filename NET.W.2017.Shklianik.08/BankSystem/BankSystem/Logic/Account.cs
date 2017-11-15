@@ -98,12 +98,4 @@ namespace BankSystem.Account
 
         protected abstract int CalculateBanefitPoints(decimal amount);
     }
-    
-    public enum AccountType { Base, Gold, Platinum}
-
-    public class AccountNumberCreator : IAccountNumberCreator
-    {
-        public string Create() => Guid.NewGuid().ToString();
-    }
-    
 }

@@ -14,6 +14,8 @@ namespace BankSystem.Account
             this.repository = repository;
         }
 
+        public enum AccountType { Base, Gold, Platinum }
+
         public void OpenAccount(string name, AccountType accountType, IAccountNumberCreator creator)
         {
             Account account = null;
@@ -32,6 +34,11 @@ namespace BankSystem.Account
                     account = new PlatinumAccount(accountNumber, name);
                     break;
             }
+        }
+
+        public class AccountNumberCreator : IAccountNumberCreator
+        {
+            public string Create() => Guid.NewGuid().ToString();
         }
     }
 }

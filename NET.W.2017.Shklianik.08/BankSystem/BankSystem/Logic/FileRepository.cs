@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,10 +10,20 @@ namespace BankSystem.Account
 {
     public class FileRepository : IRepository
     {
-        public List<Account> repository = new List<Account>();
-        public void Create(Account account)
+        private string path;
+        public List<Account> repository;
+
+
+        public FileRepository(string path)
         {
-            repository.Add(account);
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                throw new ArgumentException("file title error :( ");
+            }
+            repository = new List<Account>();
+
+            this.path = path;
+
         }
 
         public IEnumerable<Account> Read()
@@ -21,25 +33,22 @@ namespace BankSystem.Account
                 File.Create(path);
             }
 
-            var bookList = new List<Book>();
             using (Stream stream = File.OpenRead(path))
             {
                 var binaryFormatter = new BinaryFormatter();
-                bookList = (List<Book>)binaryFormatter.Deserialize(stream);
+                repository = (List<Account>)binaryFormatter.Deserialize(stream);
             }
 
-            return bookList;
+            return repository;
         }
-    }
 
-        private void Save(IEnumerable<Book> books)
+        public void Save(IEnumerable<Account> accounts)
         {
             using (Stream stream = File.OpenWrite(path))
             {
                 var binaryFormatter = new BinaryFormatter();
-                binaryFormatter.Serialize(stream, books);
+                binaryFormatter.Serialize(stream, accounts);
             }
         }
     }
-
 }
