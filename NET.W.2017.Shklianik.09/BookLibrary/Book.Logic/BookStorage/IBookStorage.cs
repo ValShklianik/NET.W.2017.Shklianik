@@ -13,6 +13,7 @@ namespace Book.Logic
     public interface IBookStorage
     {
         /// <summary>
+        /// 
         /// Returns all books.
         /// </summary>
         /// <returns>Books contained in the storage.</returns>
