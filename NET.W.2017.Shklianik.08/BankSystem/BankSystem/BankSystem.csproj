@@ -42,11 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ConsoleUI\Program.cs" />
+    <Compile Include="Logic\Account.cs" />
+    <Compile Include="Logic\AccountNumberCreator.cs" />
+    <Compile Include="Logic\AccountService.cs" />
+    <Compile Include="Logic\BaseAccount.cs" />
+    <Compile Include="Logic\FileRepository.cs" />
+    <Compile Include="Logic\IAccountNumberCreator.cs" />
+    <Compile Include="Logic\IRepository.cs" />
+    <Compile Include="Logic\GoldAccount.cs" />
+    <Compile Include="Logic\PlatinumAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,12 +16,12 @@ namespace BankSystem.Account
 
         private AccountService()
         {
-            repository = new FileRepository("@repository.bin");
+            repository = new FileRepository(@"repository.bin");
             accounts = (List<Account>)repository.Read();
 
         }
 
-        public AccountService GetService()
+        public static AccountService GetService()
         {
             if (instance == null)
             {
@@ -66,6 +66,10 @@ namespace BankSystem.Account
         public void Deposit(string accountNumber, decimal amount)
         {
             Account account = accounts?.Find(a => a.AccountNumber == accountNumber);
+            if (account == null)
+            {
+                throw new ArgumentNullException("account with this id is no exist");
+            }
             account.Deposit(amount);
             repository.Save(accounts);
 
@@ -75,6 +79,10 @@ namespace BankSystem.Account
         public void Withdraw(string accountNumber, decimal amount)
         {
             Account account = accounts?.Find(a => a.AccountNumber == accountNumber);
+            if (account == null)
+            {
+                throw new ArgumentNullException("account with this id is no exist");
+            }
             account.Withdraw(amount);
             repository.Save(accounts);
         }
@@ -82,13 +90,22 @@ namespace BankSystem.Account
         public void DeleteAccount(string accountNumber)
         {
             Account account = accounts?.Find(a => a.AccountNumber == accountNumber);
+            if (account == null)
+            {
+                throw new ArgumentNullException("account with this id is no exist");
+            }
             accounts.Remove(account);
             repository.Save(accounts);
         }
 
-        public class AccountNumberCreator : IAccountNumberCreator
+        public Account GetAccountInfo(string accountNumber)
         {
-            public string Create() => Guid.NewGuid().ToString();
+            Account account = accounts?.Find(a => a.AccountNumber == accountNumber);
+            if (account == null)
+            {
+                throw new ArgumentNullException("account with this id is no exist");
+            }
+            return accounts?.Find(a => a.AccountNumber == accountNumber);
         }
     }
 }

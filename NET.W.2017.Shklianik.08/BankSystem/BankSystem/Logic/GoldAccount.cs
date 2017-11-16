@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankSystem.Account
 {
+    [Serializable]
     public class GoldAccount : Account
     {
         public GoldAccount(string accountNumber, string name) : base(accountNumber, name)

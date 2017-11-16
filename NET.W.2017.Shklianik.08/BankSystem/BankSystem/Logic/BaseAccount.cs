@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankSystem.Account
 {
+    [Serializable]
     public class BaseAccount : Account
     {
 
@@ -16,5 +17,7 @@ namespace BankSystem.Account
         protected override bool IsValidBalance(decimal value) => value >= 0;
 
         protected override int CalculateBanefitPoints(decimal amount) => (int)Math.Round(amount * 0.01m + Balance * 0.01m);
+
+        
     }
 }

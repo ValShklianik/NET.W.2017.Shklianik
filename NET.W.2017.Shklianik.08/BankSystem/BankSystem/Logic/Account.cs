@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BankSystem.Account
-{ 
+{
+    [Serializable]
     public abstract class Account
     {
         private string accountNumber;
@@ -86,10 +87,11 @@ namespace BankSystem.Account
 
         public void Withdraw(decimal amount)
         {
-            if (amount < 0)
+            if (amount < 0 && amount > balance)
             {
                 throw new ArgumentException(nameof(amount));
             }
+
             Balance -= amount;
             benefitPoints -= CalculateBanefitPoints(amount);
         }
@@ -97,5 +99,10 @@ namespace BankSystem.Account
         protected abstract bool IsValidBalance(decimal value);
 
         protected abstract int CalculateBanefitPoints(decimal amount);
+
+        public override string ToString()
+        {
+            return $"{name}, {balance}, {benefitPoints}";
+        }
     }
 }

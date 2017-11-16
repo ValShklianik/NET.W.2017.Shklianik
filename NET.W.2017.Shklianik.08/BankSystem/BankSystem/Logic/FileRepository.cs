@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BankSystem.Account
 {
+
     public class FileRepository : IRepository
     {
         private string path;
@@ -30,7 +31,7 @@ namespace BankSystem.Account
         {
             if (!File.Exists(path))
             {
-                File.Create(path);
+                return new List<Account>();
             }
 
             using (Stream stream = File.OpenRead(path))

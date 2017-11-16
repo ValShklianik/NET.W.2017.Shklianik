@@ -11,27 +11,23 @@ namespace BankSystem.ConsoleUI
     {
         public static void Main()
         {
-            //	Account account = new BaseAccount();
-            //	account.AccountNumber = "NN1233224";
-            //	account.Name = "Nastichka";
-            //	account.Deposit(120m);
-            //	account.Withdraw(120m);
-            //	account.Dump();
-            //	
-            //	Account accountSilv = new SilverAccount();
-            //	accountSilv.AccountNumber = "NNNNN1233224";
-            //	accountSilv.Name = "Nastichka";
-            //	accountSilv.Deposit(120m);
-            //	accountSilv.Withdraw(1000m);
-            //	accountSilv.Dump();
 
-            //	var guid = new Guid();
+            AccountService service = AccountService.GetService();
+          
 
-            var repo = new FileRepository();
-            AccountService service = new AccountService(repo);
-            service.OpenAccount("user", AccountType.Base, new AccountNumberCreator());
-            //Console.WriteLine(repo.repository);
-            //Console.Read();
+            string idAccount = service.OpenAccount("Princess Lera", AccountService.AccountType.Base, new AccountNumberCreator());
+            string idAccountGold = service.OpenAccount("Princess Gold Lera", AccountService.AccountType.Gold, new AccountNumberCreator());
+            string idAccountPlatinum = service.OpenAccount("Princess Platinum Lera", AccountService.AccountType.Platinum, new AccountNumberCreator());
+
+            service.Deposit(idAccount, 1m);
+            service.Deposit(idAccountGold, 5m);
+            service.Withdraw(idAccountGold, 0.5m);
+            service.Deposit(idAccountPlatinum, 5m);
+
+            Console.WriteLine(service.GetAccountInfo(idAccount).ToString());
+            Console.WriteLine(service.GetAccountInfo(idAccountGold).ToString());
+            Console.WriteLine(service.GetAccountInfo(idAccountPlatinum).ToString());
+            Console.Read();
 
         }
     }
