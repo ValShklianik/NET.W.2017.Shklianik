@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Book.Logic
 {
     #region Book class
     [Serializable]
-    public class Book : IComparable, IComparable<Book>, IEquatable<Book>
+    public class Book : IComparable, IComparable<Book>, IEquatable<Book>, IFormattable
     {
         #region fields
         private string isbn;
@@ -303,6 +304,55 @@ namespace Book.Logic
             return book.ISBN == ISBN;
         }
         #endregion
+
+        #region format
+
+        /// <summary>
+        /// Returns a string representation of a book according to the format.
+        /// </summary>
+        /// <param name="format">string format</param>
+        /// <returns>String representation.</returns>
+        /// <exception cref="FormatException">Thrown when <paramref name="format"/> is not supported.</exception>
+        public string ToString(string format) =>
+            this.ToString(format, null);
+
+        /// <inheritdoc />
+        /// <exception cref="FormatException">Thrown when <paramref name="format"/> is error.</exception>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+
+            if (string.IsNullOrWhiteSpace(format))
+            {
+                format = "G";
+            }
+
+            if (ReferenceEquals(formatProvider, null))
+            {
+                formatProvider = CultureInfo.CurrentCulture;
+            }
+
+            switch (format)
+            {
+                case "G":
+                    return $"ISBN 13: {ISBN} {Author} {Title} {Publisher} " +
+                           $"{Year.ToString(formatProvider)} " +
+                           $"{NumPages.ToString(formatProvider)} " +
+                           $"{Price.ToString(formatProvider)}";
+                case "AT":
+                    return $"{Author} {Title}";
+                case "ATP":
+                    return $"{Author} {Title} {Publisher}";
+                case "IATPYN":
+                    return $"ISBN 13: {ISBN} {Author} {Title} {Publisher} " +
+                           $"{Year.ToString(formatProvider)} " +
+                           $"{NumPages.ToString(formatProvider)}";
+                case "ATPY":
+                    return $"{Author} {Title} {Publisher} " +
+                           $"{Year.ToString(formatProvider)}";
+               }
+        }
+
+        #endregion 
     }
 }
 #endregion
