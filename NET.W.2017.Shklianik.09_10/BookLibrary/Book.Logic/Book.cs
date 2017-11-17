@@ -349,7 +349,9 @@ namespace Book.Logic
                 case "ATPY":
                     return $"{Author} {Title} {Publisher} " +
                            $"{Year.ToString(formatProvider)}";
-               }
+                default:
+                    throw new FormatException($"The {format} format string is error");
+            }
         }
 
         #endregion 
