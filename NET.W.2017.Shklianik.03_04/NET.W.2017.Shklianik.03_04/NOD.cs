@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NET.W._2017.Shklianik._03_04
 {
@@ -11,6 +7,7 @@ namespace NET.W._2017.Shklianik._03_04
     {
         #region public methods
 
+        public delegate int funcNod(int lhs,int rhs);
         /// <summary>
         /// The GetTime method which call Euclid algorithm .
         /// </summary>
@@ -18,33 +15,59 @@ namespace NET.W._2017.Shklianik._03_04
         /// <param name="firstEl">second number</param>
         /// <param name="params">second number</param>
         /// <returns>Greatest common divisor of  numbers</returns>
-
-        public int GetTime(out TimeSpan operationTime, int firsEl, params int[] integers)
+        public int GetTime(out TimeSpan operationTime, params int[] integers)
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();
 
-            int result = GetNodByEvklid(firsEl,integers);
+            int result = GetNodByEvklid(integers);
 
             watch.Stop();
             operationTime = watch.Elapsed;
             return result;
         }
-        public int GetNodByEvklid(int firstEl, params int[] integers)
+
+        public int[] GetNewArray(funcNod alg, int[] integers)
         {
-            firstEl = Math.Abs(firstEl);
-            if (integers.Length == 0)
+            if(integers.Length == 0)
             {
-                return firstEl;
+                throw new ArgumentException("length of array is 0");
+            }
+            if (integers[0] == 0 || integers[1] == 0)
+            {
+                throw new ArgumentOutOfRangeException("kkk");
+            }
+            
+            var newIntegers = new int[integers.Length - 1];
+            newIntegers[0] = alg(Math.Abs(integers[0]), Math.Abs(integers[1]));
+            for(int i=1; i < newIntegers.Length; i++)
+            {
+                newIntegers[i] = integers[i+1];
             }
 
-            int secondEl = Math.Abs(integers[0]);
+            return newIntegers;
 
-            if (firstEl ==0 || secondEl == 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
+        }
 
+        public int GetNodByEvklid(params int[] integers)
+        {
+            if (integers.Length == 1) return integers[0];
+            return GetNodByEvklid(GetNewArray(GetNodPairByEvklid, integers));
+        }
+
+
+        public int GetNodByStein(params int[] integers)
+        {
+            if (integers.Length == 1) return integers[0];
+            return GetNodByStein(GetNewArray(GetNodPairBySteint, integers));
+        }
+        #endregion
+
+
+
+        #region private GetNod
+        private int GetNodPairByEvklid(int firstEl, int secondEl)
+        {
             while (firstEl != secondEl)
             {
                 if (firstEl > secondEl)
@@ -56,43 +79,11 @@ namespace NET.W._2017.Shklianik._03_04
                     secondEl = secondEl - firstEl;
                 }
             }
-
-            var others = new int[integers.Length - 1];
-
-            for(int i = 0; i < others.Length; i++)
-            {
-                others[i] = integers[i + 1];
-            }
-
-            return GetNodByEvklid(firstEl, others);
+            return firstEl;
         }
 
 
-        public int GetNodByStein(int firstEl, params int[] integers)
-        {
-            firstEl = Math.Abs(firstEl);
-
-            if (integers.Length == 0)
-            {
-                return firstEl;
-            }
-            int secondEl = Math.Abs(integers[0]);
-
-            var others = new int[integers.Length - 1];
-      
-            for (int i = 0; i < others.Length; i++)
-            {
-                others[i] = integers[i + 1];
-            }
-
-            return GetNodByStein(GetNod(firstEl, secondEl), others);
-        }
-#endregion 
-
-
-
-        #region private GetNod
-        private int GetNod(int firstEl, int secondEl)
+        private int GetNodPairBySteint(int firstEl, int secondEl)
         {
             if (firstEl == secondEl)
                 return firstEl;
@@ -103,15 +94,15 @@ namespace NET.W._2017.Shklianik._03_04
             if ((~firstEl & 1) != 0)
             {
                 if ((secondEl & 1) != 0)
-                    return GetNod(firstEl >> 1, secondEl);
+                    return GetNodPairBySteint(firstEl >> 1, secondEl);
                 else
-                    return GetNod(firstEl >> 1, secondEl >> 1) << 1;
+                    return GetNodPairBySteint(firstEl >> 1, secondEl >> 1) << 1;
             }
             if ((~secondEl & 1) != 0)
-                return GetNod(firstEl, secondEl >> 1);
+                return GetNodPairBySteint(firstEl, secondEl >> 1);
             if (firstEl > secondEl)
-                return GetNod((firstEl - secondEl) >> 1, secondEl);
-            return GetNod((secondEl - firstEl) >> 1, firstEl);
+                return GetNodPairBySteint((firstEl - secondEl) >> 1, secondEl);
+            return GetNodPairBySteint((secondEl - firstEl) >> 1, firstEl);
 
         }
 #endregion 
