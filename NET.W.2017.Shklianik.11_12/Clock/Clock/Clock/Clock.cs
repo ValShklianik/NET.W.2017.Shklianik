@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
-using Clock.Events;
+using ClockLogic.Events;
 
-namespace Clock.Clock 
+namespace ClockLogic.Clocks
 {
     class Clock : IClock
     {

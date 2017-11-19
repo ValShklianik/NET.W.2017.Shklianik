@@ -42,11 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Clock\Clock.cs" />
+    <Compile Include="Clock\IClock.cs" />
+    <Compile Include="Event\Event.cs" />
+    <Compile Include="Event\IEvent.cs" />
+    <Compile Include="ConsoleUI\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

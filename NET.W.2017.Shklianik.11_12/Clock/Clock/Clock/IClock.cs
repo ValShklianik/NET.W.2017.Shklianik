@@ -1,6 +1,6 @@
-﻿using Clock.Events;
+﻿using ClockLogic.Events;
 
-namespace Clock.Clock
+namespace ClockLogic.Clocks
 {
     interface IClock
     {
