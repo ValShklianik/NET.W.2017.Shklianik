@@ -25,42 +25,42 @@ namespace NET.W._2017.ShklianikTests
         [Test, TestCaseSource(typeof(TestCasesClass), nameof(TestCasesClass.TestCasesByIncSum))]
         public bool ComparerSumByIncTest(int[][] input, int[][] expcted)
         {
-            Jaggeds.ArrayHelper.BubbleSort(input, new Jaggeds.ComparerSumByInc());
+            Jaggeds.ArrayHelper.Sort(input, new Comparators.ComparerSumByInc());
             return isEquals(input, expcted);
         }
 
         [Test, TestCaseSource(typeof(TestCasesClass), nameof(TestCasesClass.TestCasesByDecSum))]
         public bool ComparerSumByDecTest(int[][] input, int[][] expcted)
         {
-            Jaggeds.ArrayHelper.BubbleSort(input, new Jaggeds.ComparerSumByDec());
+            Jaggeds.ArrayHelper.Sort(input, new Comparators.ComparerSumByDec());
             return isEquals(input, expcted);
         }
 
         [Test, TestCaseSource(typeof(TestCasesClass), nameof(TestCasesClass.TestCasesByDecMax))]
         public bool ComparerMaxByDecTest(int[][] input, int[][] expcted)
         {
-            Jaggeds.ArrayHelper.BubbleSort(input, new Jaggeds.ComparerMaxByDec());
+            Jaggeds.ArrayHelper.Sort(input, new Comparators.ComparerMaxByDec());
             return isEquals(input, expcted);
         }
 
         [Test, TestCaseSource(typeof(TestCasesClass), nameof(TestCasesClass.TestCasesByIncMax))]
         public bool ComparerMaxByIncTest(int[][] input, int[][] expcted)
         {
-            Jaggeds.ArrayHelper.BubbleSort(input, new Jaggeds.ComparerMaxByInc());
+            Jaggeds.ArrayHelper.Sort(input, new Comparators.ComparerMaxByInc());
             return isEquals(input, expcted);
         }
 
         [Test, TestCaseSource(typeof(TestCasesClass), nameof(TestCasesClass.TestCasesByDecMax))]
         public bool ComparerMinByDecTest(int[][] input, int[][] expcted)
         {
-            Jaggeds.ArrayHelper.BubbleSort(input, new Jaggeds.ComparerMinByDec());
+            Jaggeds.ArrayHelper.Sort(input, new Comparators.ComparerMinByDec());
             return isEquals(input, expcted);
         }
 
         [Test, TestCaseSource(typeof(TestCasesClass), nameof(TestCasesClass.TestCasesByIncMin))]
         public bool ComparerMinByIncTest(int[][] input, int[][] expcted)
         {
-            Jaggeds.ArrayHelper.BubbleSort(input, new Jaggeds.ComparerMinByInc());
+            Jaggeds.ArrayHelper.Sort(input, new Comparators.ComparerMinByInc());
             return isEquals(input, expcted);
         }
 
