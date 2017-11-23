@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using BinarySearchLogic;
+using NUnit.Framework;
 
 namespace BinarySearchTests
 {
@@ -81,17 +81,14 @@ namespace BinarySearchTests
         public int BinarySearchIntComparisonTest(int[] array, int elem, Comparison<int> comparison)
         {
             return BinarySearch.Find(array, elem, comparison);
-        }
-
-        
+        }  
 
         [Test, TestCaseSource("StringComparisonTestCases")]
         public int BinarySearchStringComparisonTest(string[] array, string elem, Comparison<string> comparison)
         {
             return BinarySearch.Find(array, elem, comparison);
         }
-
-        
+     
         [Test, TestCaseSource("ExceptionTestCases")]
         public void BinarySearchExceptionTest(object[] array, object elem)
         {
