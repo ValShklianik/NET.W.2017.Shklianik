@@ -2,9 +2,18 @@
 
 namespace BinarySearchLogic
 {
+#region public static claass BinarySearch
     public static class BinarySearch
     {
-       // public delegate int TypeGet<in T>(T lhs, T rhs); //>1
+        #region public static Find
+        /// <summary>
+        /// finds index of required element 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="required"></param>
+        /// <param name="type"></param>
+        /// <returns>index of required element </returns>
         public static int Find<T>(T[] array, T required,  Comparison<T> type)
         {
             if (array == null || required == null || type == null) throw new ArgumentNullException(nameof(array));
@@ -29,9 +38,23 @@ namespace BinarySearchLogic
 
             return mid;
         }
+#endregion
 
-        public static int GetMid<T>(T[] array) => array.Length / 2;
+        /// <summary>
+        /// finds index of the midlle element
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <returns>midlle element</returns>
+        private static int GetMid<T>(T[] array) => array.Length / 2;
 
+        /// <summary>
+        /// return subarray
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         #region private SubArray
         private static T[] SubArray<T>(T[] array, int start, int end)
         {
@@ -41,4 +64,5 @@ namespace BinarySearchLogic
         }
         #endregion 
     }
+#endregion
 }
