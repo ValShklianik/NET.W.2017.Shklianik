@@ -9,8 +9,8 @@ namespace MatrixLogic
 {
     public class SquareMatrix<T> : IEnumerable<T>, IEnumerable
     {
-        private readonly int order;
-        private T[] matrix;
+        protected readonly int order;
+        protected T[] matrix;
 
         public event EventHandler<MatrixEventArgs<T>> OnChangeValue = delegate { };
 
@@ -49,9 +49,9 @@ namespace MatrixLogic
             if (ReferenceEquals(matrix, null)) throw new ArgumentNullException(nameof(matrix));
             order = matrix.Order;
             this.matrix = new T[order * order];
-            for (int i = 0; i <= order; i++)
+            for (int i = 0; i < order; i++)
             {
-                for (int j = 0; j <= order; j++)
+                for (int j = 0; j < order; j++)
                 {
                     this[i, j] = matrix[i, j];
                 }
@@ -90,6 +90,11 @@ namespace MatrixLogic
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+        protected virtual int GetIndex(int i, int j)
+        {
+            return (i * order) + j;
+        }
+
         private void VerifyMatrix(int i, int j)
         {
             if (i > order || i <= 0 || j > order || j <= 0) throw new ArgumentException("coords is error");
@@ -105,10 +110,7 @@ namespace MatrixLogic
             matrix[GetIndex(i, j)] = value;
         }
 
-        private int GetIndex(int i, int j)
-        {
-            return  (i * order) + j;
-        }
+       
 
     }
 }

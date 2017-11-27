@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace MatrixLogic
 {
-    public class DiagonalMaatrix<T> : SquareMatrix<T>
+    public class DiagonalMatrix<T> : SquareMatrix<T>
     {
-        private T[] diagonalsElements;
-        public DiagonalMaatrix(int order) : base(order)
+        public DiagonalMatrix(int order) : base(order)
         {
-            diagonalsElements = new T[order];
+            matrix = new T[order];
         }
 
-        public DiagonalMaatrix(T[,] matrix) : base(matrix)
+        public DiagonalMatrix(T[,] matrix) : base(matrix)
         {
         }
 
-        public DiagonalMaatrix(SquareMatrix<T> matrix) : base(matrix)
+        public DiagonalMatrix(SquareMatrix<T> matrix) : base(matrix)
         {
         }
     }

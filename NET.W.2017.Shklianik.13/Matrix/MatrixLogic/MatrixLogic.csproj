@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiagonalMaatrix.cs" />
+    <Compile Include="MatrixEventArgs.cs" />
     <Compile Include="SquareMatrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
