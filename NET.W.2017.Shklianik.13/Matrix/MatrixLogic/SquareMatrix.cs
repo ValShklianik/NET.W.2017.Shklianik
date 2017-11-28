@@ -79,9 +79,9 @@ namespace MatrixLogic
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < this.Order; i++)
+            for (int i = 0; i < Order; i++)
             {
-                for (int j = 0; j < this.Order; j++)
+                for (int j = 0; j < Order; j++)
                 {
                     yield return this.GetValue(i, j);
                 }
