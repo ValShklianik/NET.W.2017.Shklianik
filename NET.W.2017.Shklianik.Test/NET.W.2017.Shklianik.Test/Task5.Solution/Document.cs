@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Task5.Solution.Converters;
 
 namespace Task5
 {
@@ -16,40 +17,16 @@ namespace Task5
             this.parts = new List<DocumentPart>(parts);
         }
 
-        public string ToHtml()
+        public string Convert(Converter converter)
         {
-            string output = string.Empty;
-
-            foreach (DocumentPart part in this.parts)
+            foreach(var part in parts)
             {
-                output += $"{part.ToHtml()}\n";
+                part.Convert(converter);
             }
 
-            return output;
+            return converter.Converted;
         }
 
-        public string ToPlainText()
-        {
-            string output = string.Empty;
-
-            foreach (DocumentPart part in this.parts)
-            {
-                output += $"{part.ToPlainText()}\n";
-            }
-
-            return output;
-        }
-
-        public string ToLaTeX()
-        {
-            string output = string.Empty;
-
-            foreach (DocumentPart part in this.parts)
-            {
-                output += $"{part.ToLaTeX()}\n";
-            }
-
-            return output;
-        }
+        
     }
 }

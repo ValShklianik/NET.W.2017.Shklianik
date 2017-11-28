@@ -1,11 +1,12 @@
-﻿namespace Task5
+﻿using Task5.Solution.Converters;
+
+namespace Task5
 {
     public class BoldText : DocumentPart
     {
-        public override string ToHtml() => "<b>" + this.Text + "</b>";
-
-        public override string ToPlainText() => "**" + this.Text + "**";
-
-        public override string ToLaTeX() => "\\textbf{" + this.Text + "}";
+        public override void Convert(Converter converter)
+        {
+            converter.ConvertBoldText(this);
+        }
     }
 }

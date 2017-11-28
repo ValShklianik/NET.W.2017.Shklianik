@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace Task5.Solution.Converters
 {
-    public class HTMLConverter : Converter
+    public class PlainTextConverter : Converter
     {
         public override void ConvertBoldText(BoldText boldText) =>
-            this.Converted += "<b>" + boldText.Text + "</b>" + Environment.NewLine;
+            Converted += "**" + boldText.Text + "**" + Environment.NewLine;
 
         public override void ConvertHyperlink(Hyperlink hyperlink) =>
-            this.Converted += "<a href=\"" + hyperlink.Url + "\">" + hyperlink.Text + "</a>"
-                        + Environment.NewLine;
+            Converted += hyperlink.Text + " [" + hyperlink.Url + "]" + Environment.NewLine;
 
         public override void ConvertPlainText(PlainText plainText) =>
-            this.Converted += plainText.Text + Environment.NewLine;
+            Converted += plainText.Text + Environment.NewLine;
     }
 }
