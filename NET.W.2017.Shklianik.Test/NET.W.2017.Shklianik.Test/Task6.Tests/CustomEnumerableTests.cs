@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using Test6.Solution;
 
 namespace Task6.Tests
 {
@@ -14,10 +15,13 @@ namespace Task6.Tests
         [Test]
         public void Generator_ForSequence1()
         {
+            var function  = 
+            var Sequence = new SequenceGenerator<int>(1, 1 function);
             int[] expected = {1, 1, 2, 3, 5, 8, 13, 21, 34, 55};
 
             Assert.Inconclusive();
         }
+        public void 
 
         [Test]
         public void Generator_ForSequence2()
