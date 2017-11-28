@@ -15,10 +15,32 @@ namespace MatrixLogic
 
         public DiagonalMatrix(T[,] matrix) : base(matrix)
         {
+            this.matrix = new T[order + 1];
+           
+            for (int i = 0;  i < order; i++)
+            {
+                this.matrix[GetIndex(i, i)] = matrix[i, i];
+            }
+
+            this.matrix[GetIndex(0, 1)] = matrix[0, 1];
         }
 
+        protected override int GetIndex(int i, int j)
+        {
+            if (i == j) return i;
+            return order;
+        }
+    
         public DiagonalMatrix(SquareMatrix<T> matrix) : base(matrix)
         {
+            this.matrix = new T[order + 1];
+
+            for (int i = 0; i < order; i++)
+            {
+                this.matrix[GetIndex(i, i)] = matrix[i, i];
+            }
+
+            this.matrix[GetIndex(0, 1)] = matrix[0, 1]; 
         }
     }
 }
