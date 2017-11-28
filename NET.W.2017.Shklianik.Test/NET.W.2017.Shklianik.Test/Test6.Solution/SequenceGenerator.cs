@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Test6.Solution
 {
     public class SequenceGenerator<T>
     {
         public delegate T GetSequenceElement(T a, T b);
-        private GetSequenceElement function;
+        public GetSequenceElement function;
         private T a;
         private T b;
         public SequenceGenerator(T a, T b, GetSequenceElement function)
@@ -18,21 +15,35 @@ namespace Test6.Solution
             this.a = a;
             this.b = b;
         }
-        public IEnumerable<T> GetSecuence(int length)
+
+        public IEnumerable<T> GetSequence(int length)
         {
             if (length <= 0) throw new ArgumentException(nameof(length));
-            T currentEl = a;
-            T nextEl = b;
 
             while (length > 0)
             {
                 length--;
-                yield return currentEl;
+                yield return a;
                 T temp = function(a, b);
-                currentEl = nextEl;
+                a = b;
 
-                nextEl = temp;
+                b = temp;
             }
+        }
+
+        public static T FirstFormula(T a, T b)
+        {
+            return (dynamic)a + (dynamic)b;
+        }
+
+        public static T SecondFormula(T a, T b)
+        {
+            return 6 * (dynamic)a - 8 * (dynamic)b;
+        }
+
+        public static T ThirdFormula(T a, T b)
+        {
+            return (dynamic)a + (dynamic)b / (dynamic)a;
         }
     }
 }
