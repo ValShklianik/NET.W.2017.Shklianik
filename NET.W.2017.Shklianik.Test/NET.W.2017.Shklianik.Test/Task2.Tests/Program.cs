@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Task2.Solution;
+﻿using Task2.Solution;
 
 namespace Task2.Console
 {

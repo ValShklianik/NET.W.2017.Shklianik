@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Task4.Solution;
+using Moq;
 
 namespace Task4.Tests
 {

@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections;
+using Moq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,7 @@ namespace Task1.Solution.Tests
                 yield return new TestCaseData("").Returns(Tuple.Create(false, $"password is empty "));
                 yield return new TestCaseData("11111111").Returns(Tuple.Create(false, "11111111 hasn't alphanumerical chars"));
                 yield return new TestCaseData("aaaaaaaa").Returns(Tuple.Create(false, "aaaaaaaa hasn't digits"));
-
-
             }
-
         }
 
         public static IEnumerable passwordStringCustomChaked
