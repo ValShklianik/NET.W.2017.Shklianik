@@ -1,25 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BinarySearchTreeLogic
 {
+    #region public struct
     public struct Point : IComparable<Point>
     {
-        public  int x;
-        public  int y;
+        public int X;
 
+        public int Y;
+
+        #region ctor
         public Point(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            X = x;
+            Y = y;
         }
+        #endregion !ctor
 
+        /// <inheritdoc />
         public int CompareTo(Point point)
         {
             return 0;
         }
     }
+    #endregion
 }
