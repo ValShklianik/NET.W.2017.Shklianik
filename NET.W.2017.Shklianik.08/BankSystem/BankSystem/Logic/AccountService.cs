@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BankSystem.Account
+namespace BankSystem.Logic
 {
     public class AccountService
     {
-        private IRepository repository;
-        private List<Account> accounts;
-        private static AccountService instance = null;
+        private readonly IRepository repository;
+        private readonly List<Account> accounts;
+        private static AccountService instance;
         
         public enum AccountType { Base, Gold, Platinum }
 
@@ -23,12 +20,7 @@ namespace BankSystem.Account
 
         public static AccountService GetService()
         {
-            if (instance == null)
-            {
-                instance = new AccountService();
-            }
-
-            return instance;
+            return instance ?? (instance = new AccountService());
         }
 
         public string OpenAccount(string name, AccountType accountType, IAccountNumberCreator creator)
@@ -57,6 +49,7 @@ namespace BankSystem.Account
                     break;
             }
 
+            if (accounts == null) return accountNumber;
             accounts.Add(account);
             repository.Save(accounts);
 

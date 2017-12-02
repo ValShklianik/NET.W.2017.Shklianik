@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace Book.Logic
 {
-
     #region class BookListService
     /// <inheritdoc />
     public class BookListService : IBookService

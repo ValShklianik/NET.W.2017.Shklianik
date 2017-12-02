@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using NLog;
 
 namespace Book.Logic
@@ -321,7 +321,6 @@ namespace Book.Logic
         /// <exception cref="FormatException">Thrown when <paramref name="format"/> is error.</exception>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-
             if (string.IsNullOrWhiteSpace(format))
             {
                 format = "G";

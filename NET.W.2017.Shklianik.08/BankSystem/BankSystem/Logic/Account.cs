@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BankSystem.Account
+namespace BankSystem.Logic
 {
     [Serializable]
     public abstract class Account
@@ -12,7 +8,6 @@ namespace BankSystem.Account
         private string accountNumber;
         private string name;
         private decimal balance;
-        private int benefitPoints;
 
         public string AccountNumber
         {
@@ -62,10 +57,7 @@ namespace BankSystem.Account
             }
         }
 
-        public int BenefitPoints
-        {
-            get => benefitPoints;
-        }
+        public int BenefitPoints { get; private set; }
 
         protected Account(string accountNumber, string name)
         {
@@ -82,7 +74,7 @@ namespace BankSystem.Account
                 throw new ArgumentException(nameof(amount));
             }
             Balance += amount;
-            benefitPoints += CalculateBanefitPoints(amount);
+            BenefitPoints += CalculateBanefitPoints(amount);
         }
 
         public void Withdraw(decimal amount)
@@ -93,7 +85,7 @@ namespace BankSystem.Account
             }
 
             Balance -= amount;
-            benefitPoints -= CalculateBanefitPoints(amount);
+            BenefitPoints -= CalculateBanefitPoints(amount);
         }
 
         protected abstract bool IsValidBalance(decimal value);
@@ -102,7 +94,7 @@ namespace BankSystem.Account
 
         public override string ToString()
         {
-            return $"{name}, {balance}, {benefitPoints}";
+            return $"{name}, {balance}, {BenefitPoints}";
         }
     }
 }

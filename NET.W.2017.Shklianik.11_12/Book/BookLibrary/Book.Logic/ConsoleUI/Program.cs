@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Book.Logic
 {
-    class Program
+    public class Program
     {
-        static ILogging logging = new Logging("Program");
+        private static ILogging logging = new Logging("Program");
+
         public static void Main()
-        {
-      
+        {     
             IBookStorage bookListStorage = new BookListStorage(@"library.bin");
             IBookService bookListService = new BookListService(bookListStorage);
 
@@ -27,21 +27,6 @@ namespace Book.Logic
             bookListService.Save();
             Console.ReadLine();
         }
-
-        public class TitlePredicate : IPredicate<Book>
-        {
-            private string title;
-            public TitlePredicate(string title)
-            {
-                this.title = title;
-            }
-
-            public bool Select(Book book)
-            {
-                return book.Title == title;
-            }
-        }
-
 
         private static void FileCreateImplementation(IBookService bookList)
         {
@@ -65,7 +50,6 @@ namespace Book.Logic
             bookList.Sort();
 
             ShowBooks(bookList.GetBooks());
-
 
             ShowBooks(bookList.FindBooks(new TitlePredicate("Book333")));
 
@@ -94,13 +78,22 @@ namespace Book.Logic
                 logging.Error(book.ToString());
 
                 logging.Info(book.ToString());
-
             }
         }
 
+        public class TitlePredicate : IPredicate<Book>
+        {
+            private string title;
 
+            public TitlePredicate(string title)
+            {
+                this.title = title;
+            }
 
-
-
+            public bool Select(Book book)
+            {
+                return book.Title == title;
+            }
+        }
     }
 }

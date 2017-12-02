@@ -5,7 +5,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Book.Logic
 {
-
     #region class BookListStorage
     public class BookListStorage : IBookStorage
     {

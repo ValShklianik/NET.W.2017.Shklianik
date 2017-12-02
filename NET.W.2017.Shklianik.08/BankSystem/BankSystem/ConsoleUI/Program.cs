@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BankSystem.Account;
+using BankSystem.Logic;
 
 namespace BankSystem.ConsoleUI
 {
-    class Program
+    public class Program
     {
         public static void Main()
         {
 
-            AccountService service = AccountService.GetService();
+            var service = AccountService.GetService();
           
 
             string idAccount = service.OpenAccount("Princess Lera", AccountService.AccountType.Base, new AccountNumberCreator());

@@ -1,13 +1,9 @@
 ﻿using System;
 using NLog;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Book.Logic
 {
-    interface ILogging
+    public interface ILogging
     {
         void Debug(string message);
 
@@ -36,10 +32,11 @@ namespace Book.Logic
 
         public Logging(string className)
         {
-            if(string.IsNullOrWhiteSpace(className))
+            if (string.IsNullOrWhiteSpace(className))
             {
                 throw new ArgumentNullException("className is null");
             }
+
             logger = LogManager.GetLogger(className);
         }
 
@@ -62,9 +59,5 @@ namespace Book.Logic
         public void FatalError(string message) => logger.Debug(message);
 
         public void FatalError(string message, Exception exception) => logger.Debug(exception, message);
-
-
-    }
-
-    
+    }    
 }

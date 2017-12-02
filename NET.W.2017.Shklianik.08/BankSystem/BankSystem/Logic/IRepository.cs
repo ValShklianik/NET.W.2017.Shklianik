@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BankSystem.Account
+namespace BankSystem.Logic
 {
     public interface IRepository 
     {

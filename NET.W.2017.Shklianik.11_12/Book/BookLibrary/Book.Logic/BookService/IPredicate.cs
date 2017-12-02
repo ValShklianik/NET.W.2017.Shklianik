@@ -18,4 +18,3 @@ namespace Book.Logic
     }
     #endregion !IPredicate
 }
-
