@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MatrixLogic
 {
@@ -23,10 +19,10 @@ namespace MatrixLogic
         /// <param name="newValue">matrix element new value</param>
         public MatrixEventArgs(int row, int column, T oldValue, T newValue)
         {
-            this.Row = row;
-            this.Column = column;
-            this.OldValue = oldValue;
-            this.NewValue = newValue;
+            Row = row;
+            Column = column;
+            OldValue = oldValue;
+            NewValue = newValue;
         }
 
         /// <summary>

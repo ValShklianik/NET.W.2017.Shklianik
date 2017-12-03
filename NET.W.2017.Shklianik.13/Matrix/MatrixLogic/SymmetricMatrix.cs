@@ -1,47 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MatrixLogic
+﻿namespace MatrixLogic
 {
-    class SymmetricMatrix<T> : SquareMatrix<T>
+    public class SymmetricMatrix<T> : SquareMatrix<T>
     {
+        #region ctrors
+
+        /// <summary>
+        /// ctor oder
+        /// </summary>
+        /// <param name="order"></param>
         public SymmetricMatrix(int order) : base(order)
         {
             matrix = new T[order];
         }
 
+        /// <summary>
+        /// ctror T[,]
+        /// </summary>
+        /// <param name="matrix"></param>
         public SymmetricMatrix(T[,] matrix) : base(matrix)
         {
-            this.matrix = new T[((1 + order) / 2) * order];
             int matrixLength = ((1 + order) / 2) * order;
-
-            for (int i = 0; i < matrixLength; i++)
+            this.matrix = new T[matrixLength];
+            
+            for (int i = 0; i < order; i++)
             {
-                for (int j = 0; j < matrixLength; j++)
+                for (int j = 0; j < order; j++)
                 {
-                    this.matrix[GetIndex(i, j)] = matrix[i, j];
+                    int index = GetIndex(i, j);
+                    this.matrix[index] = matrix[i, j];
                 }
             }
         }
 
+        /// <summary>
+        /// ctor SquareMAtrix matrix
+        /// </summary>
+        /// <param name="matrix"></param>
         public SymmetricMatrix(SquareMatrix<T> matrix) : base(matrix)
         {
-            this.matrix = new T[((1 + order) / 2) * order];
             int matrixLength = ((1 + order) / 2) * order;
+            this.matrix = new T[matrixLength];
 
-            for (int i = 0; i < matrixLength; i++)
+            for (int i = 0; i < order; i++)
             {
-                for (int j = 0; j < matrixLength; j++)
+                for (int j = 0; j < order; j++)
                 {
-                    this.matrix[GetIndex(i, j)] = matrix[i, j];
+                    int index = GetIndex(i, j);
+                    this.matrix[index] = matrix[i, j];
                 }
             }
         }
+        #endregion !ctrors
 
-        protected override int GetIndex(int i, int j)
+        /// <summary>
+        /// gets inges of matrix
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <returns>index</returns>
+        protected sealed override int GetIndex(int i, int j)
         {
             if ( j<=i) return (1+i)/2*i +j;
             return GetIndex(j,i);

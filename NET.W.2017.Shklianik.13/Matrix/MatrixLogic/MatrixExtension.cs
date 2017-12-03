@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MatrixLogic
+﻿namespace MatrixLogic
 {
-    class MatrixExtension
+    public static class MatrixExtension
     {
+        #region public static add methods
+        /// <summary>
+        /// add a square matrix to a square
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="matrixFirst"></param>
+        /// <param name="matrixSecond"></param>
+        /// <returns>square matrix</returns>
         public static SquareMatrix<T> Add<T>(SquareMatrix<T> matrixFirst, SquareMatrix<T> matrixSecond)
         {
             var resultArray = new T[matrixFirst.Order, matrixFirst.Order];
@@ -23,6 +25,13 @@ namespace MatrixLogic
             return new SquareMatrix<T>(resultArray);
         }
 
+        /// <summary>
+        /// add a square matrix to a diagonal
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="matrixFirst"></param>
+        /// <param name="matrixSecond"></param>
+        /// <returns>square matrix</returns>
         public static SquareMatrix<T> Add<T>(SquareMatrix<T> mFirst, DiagonalMatrix<T> mSecond)
         {
             var result = new SquareMatrix<T>(mFirst);
@@ -35,8 +44,22 @@ namespace MatrixLogic
             return result;
         }
 
+        /// <summary>
+        /// add a diagolan matrix to a square
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="matrixFirst"></param>
+        /// <param name="matrixSecond"></param>
+        /// <returns>square matrix</returns>
         public static SquareMatrix<T> Add<T>(DiagonalMatrix<T> mFirst, SquareMatrix<T> mSecond) => Add<T>(mSecond, mFirst);
 
+        /// <summary>
+        /// add a square matrix to a symeric
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="matrixFirst"></param>
+        /// <param name="matrixSecond"></param>
+        /// <returns>square matrix</returns>
         public static SquareMatrix<T> Add<T>(SquareMatrix<T> mFirst, SymmetricMatrix<T> mSecond)
         {
             var resultArray = new T[mFirst.Order, mFirst.Order];
@@ -53,8 +76,22 @@ namespace MatrixLogic
             return new SquareMatrix<T>(resultArray);
         }
 
+        /// <summary>
+        /// add a symettric matrix to a square
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="matrixFirst"></param>
+        /// <param name="matrixSecond"></param>
+        /// <returns>square matrix</returns>
         public static SquareMatrix<T> Add<T>(SymmetricMatrix<T> mFirst, SquareMatrix<T> mSecond) => Add<T>(mSecond, mFirst);
 
+        /// <summary>
+        /// add a diagonal matrix to a diagal
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="matrixFirst"></param>
+        /// <param name="matrixSecond"></param>
+        /// <returns>diagonal matrix</returns>
         public static DiagonalMatrix<T> Add<T>(DiagonalMatrix<T> mFirst, DiagonalMatrix<T> mSecond)
         {
             var resultArray = new T[mFirst.Order, mFirst.Order];
@@ -67,6 +104,13 @@ namespace MatrixLogic
             return new DiagonalMatrix<T>(resultArray);
         }
 
+        /// <summary>
+        /// add a diagonal matrix to a symetric
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="matrixFirst"></param>
+        /// <param name="matrixSecond"></param>
+        /// <returns>symetric matrix</returns>
         public static SymmetricMatrix<T> Add<T>(DiagonalMatrix<T> mFirst, SymmetricMatrix<T> mSecond)
         {
             var result = new SymmetricMatrix<T>(mSecond);
@@ -79,8 +123,14 @@ namespace MatrixLogic
             return result;
         }
 
+        /// <summary>
+        /// add a symetric matrix to a diagonal
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="matrixFirst"></param>
+        /// <param name="matrixSecond"></param>
+        /// <returns>symetric matrix</returns>
         public static SymmetricMatrix<T> Add<T>(SymmetricMatrix<T> mFirst, DiagonalMatrix<T> mSecond) => Add<T>(mSecond, mFirst);
-
-
+        #endregion !add
     }
 }
