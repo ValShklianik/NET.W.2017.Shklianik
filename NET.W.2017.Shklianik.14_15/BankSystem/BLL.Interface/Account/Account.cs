@@ -8,11 +8,13 @@ namespace BLL.Interface.Account
     public abstract class Account
     {
         private string accountNumber;
-        private string name;
         private decimal balance;
 
-        public int BenefitPoints { get; private set; }
-        public int Id { get; }
+        public string OwnerFirstName { get; set; }
+        public string OwnerSecondName { get; set; }
+        public string OwnerEmail { get; set; }
+        public int BenefitPoints { get; set; }
+        public int Id { get; set; }
 
         public string AccountNumber
         {
@@ -30,26 +32,12 @@ namespace BLL.Interface.Account
             }
         }
 
-        public string Name
-        {
-            get => name;
-            set
-            {
-                if (!string.IsNullOrWhiteSpace(value))
-                {
-                    name = value;
-                }
-                else
-                {
-                    throw new ArgumentException(nameof(name));
-                }
-            }
-        }
+        public string Name => OwnerFirstName + ' ' + OwnerSecondName;
 
         public decimal Balance
         {
             get => balance;
-            private set
+            set
             {
                 if (IsValidBalance(value))
                 {
@@ -62,21 +50,11 @@ namespace BLL.Interface.Account
             }
         }
 
-        protected Account(string accountNumber, string name)
+        protected Account(string accountNumber)
         {
             AccountNumber = accountNumber;
-            Name = name;
             Balance = 0;
             Id = -1;
-        }
-
-        protected Account(int id, string accountNumber, string name, decimal balance, int benefitPoints)
-        {
-            AccountNumber = accountNumber;
-            Id = id;
-            Name = name;
-            Balance = balance;
-            BenefitPoints = benefitPoints;
         }
 
         public void Deposit(decimal amount)
@@ -106,7 +84,7 @@ namespace BLL.Interface.Account
 
         public override string ToString()
         {
-            return $"{name}, {balance}, {BenefitPoints}";
+            return $"{Name}, {balance}, {BenefitPoints}";
         }
     }
 }

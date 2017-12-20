@@ -59,6 +59,10 @@
       <Project>{2c09a78f-009b-484b-bd9b-9d9449ef2db9}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DAL.EF\DAL.EF.csproj">
+      <Project>{b73ff99e-b1ef-4055-89e3-cf83bd26935a}</Project>
+      <Name>DAL.EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL.Fake\DAL.Fake.csproj">
       <Project>{7a11cfc2-02c1-44cb-9de0-5ef6a5b2fede}</Project>
       <Name>DAL.Fake</Name>

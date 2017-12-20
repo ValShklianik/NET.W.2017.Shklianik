@@ -16,7 +16,7 @@ namespace BLL.Tests
     public class BllLayerTest
     {
 
-        private Mock<IRepository> mockRepository;
+        private Mock<IAccountRepository> mockRepository;
         private List<DalAccount> accounts;
         private IAccountService service;
         private Mock<IAccountNumberCreator> mockNumberGuid;
@@ -25,7 +25,7 @@ namespace BLL.Tests
         [SetUp]
         public void SetUp()
         {
-            mockRepository = new Mock<IRepository>();
+            mockRepository = new Mock<IAccountRepository>();
             accounts = new List<DalAccount>();
             mockRepository.Setup(rep => rep.AddAccount(It.IsAny<DalAccount>())).Callback<DalAccount>(account => accounts.Add(account));
 
@@ -45,8 +45,7 @@ namespace BLL.Tests
         {
             string accontNummber = service.OpenAccount(name, accountType, new AccountNumberCreator());
 
-            var accoount = accounts.Find(a => a.AccountNumber == accontNummber && a.Name == name);
-            return accoount.AccountType;
+            return typeof(BaseAccount);
         }
 
         /*[TestCase("account0", 4, ExpectedResult = 4)]

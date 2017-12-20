@@ -4,7 +4,7 @@ using DAL.Interface.DTO;
 
 namespace DAL.Interface.Interfaces
 {
-    public interface IRepository 
+    public interface IAccountRepository 
     {
         /// <summary>
         /// Adds <paramref name="account"/> to the repository.

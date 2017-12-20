@@ -5,12 +5,7 @@ namespace BLL.Interface.Account
     [Serializable]
     public class PlatinumAccount : Account
     {
-        public PlatinumAccount(string accountNumber, string name) : base(accountNumber, name)
-        {
-
-        }
-
-        public PlatinumAccount(int id, string accountNumber, string name, decimal balance, int benefitPoints) : base(id, accountNumber, name, balance, benefitPoints)
+        public PlatinumAccount(string accountNumber) : base(accountNumber)
         {
 
         }

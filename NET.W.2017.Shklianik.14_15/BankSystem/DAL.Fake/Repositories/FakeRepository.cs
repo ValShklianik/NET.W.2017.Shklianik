@@ -6,7 +6,7 @@ using DAL.Interface.Interfaces;
 namespace DAL.Fake.Repositories
 {
 
-    public class FakeRepository : IRepository
+    public class FakeRepository : IAccountRepository
     {
         private readonly List<DalAccount> repository;
 

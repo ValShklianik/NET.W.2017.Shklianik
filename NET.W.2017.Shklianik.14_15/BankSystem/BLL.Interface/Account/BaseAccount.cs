@@ -6,12 +6,7 @@ namespace BLL.Interface.Account
     public class BaseAccount : Account
     {
 
-        public BaseAccount(string accountNumber, string name) : base(accountNumber, name)
-        {
-
-        }
-
-        public BaseAccount(int id, string accountNumber, string name, decimal balance, int benefitPoints) : base(id, accountNumber, name, balance, benefitPoints)
+        public BaseAccount(string accountNumber) : base(accountNumber)
         {
 
         }

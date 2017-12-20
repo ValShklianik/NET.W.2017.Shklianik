@@ -11,9 +11,11 @@ namespace BLL.Mappers
             return new DalAccount
             {
                 Id = account.Id,
-                AccountType = account.GetType(),
+                AccountType = account.GetType().ToString(),
                 AccountNumber = account.AccountNumber,
-                Name = account.Name,
+                OwnerFirstName = account.OwnerFirstName,
+                OwnerSecondName = account.OwnerSecondName,
+                OwnerEmail = account.OwnerEmail,
                 Balance = account.Balance,
                 BenefitPoints = account.BenefitPoints
             };
@@ -21,13 +23,31 @@ namespace BLL.Mappers
 
         public static Account FromDalAccount(DalAccount account)
         {
-            return (Account) Activator.CreateInstance(
-                account.AccountType,
-                account.Id,
-                account.AccountNumber,
-                account.Name,
-                account.Balance,
-                account.BenefitPoints);
+            Account newAccount = (Account) Activator.CreateInstance(GetBllAccountType(account.AccountType));
+            newAccount.Id = account.Id;
+            newAccount.AccountNumber = account.AccountNumber;
+            newAccount.Balance = account.Balance;
+            newAccount.BenefitPoints = account.BenefitPoints;
+            newAccount.OwnerFirstName = account.OwnerFirstName;
+            newAccount.OwnerSecondName = account.OwnerSecondName;
+            newAccount.OwnerEmail = account.OwnerEmail;
+
+            return newAccount;
+        }
+
+        private static Type GetBllAccountType(string type)
+        {
+            if (type.Contains("Gold"))
+            {
+                return typeof(GoldAccount);
+            }
+
+            if (type.Contains("Platinum"))
+            {
+                return typeof(PlatinumAccount);
+            }
+
+            return typeof(BaseAccount);
         }
     }
 }

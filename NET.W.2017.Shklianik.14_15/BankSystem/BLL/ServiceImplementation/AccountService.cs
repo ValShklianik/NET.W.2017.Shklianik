@@ -12,9 +12,9 @@ namespace BLL.ServiceImplementation
 {
     public class AccountService : IAccountService
     {
-        private readonly IRepository repository;
+        private readonly IAccountRepository repository;
  
-        public AccountService(IRepository repository)
+        public AccountService(IAccountRepository repository)
         {
             this.repository = repository;
         }
@@ -27,18 +27,18 @@ namespace BLL.ServiceImplementation
             switch (accountType)
             {
                 case AccountType.Base:
-                    account = new BaseAccount(accountNumber, name);
+                    account = new BaseAccount(accountNumber);
                     break;
 
                 case AccountType.Gold:
-                    account = new GoldAccount(accountNumber, name);
+                    account = new GoldAccount(accountNumber);
                     break;
 
                 case AccountType.Platinum:
-                    account = new PlatinumAccount(accountNumber, name);
+                    account = new PlatinumAccount(accountNumber);
                     break;
                 default:
-                    account = new BaseAccount(accountNumber, name);
+                    account = new BaseAccount(accountNumber);
                     break;
             }
 

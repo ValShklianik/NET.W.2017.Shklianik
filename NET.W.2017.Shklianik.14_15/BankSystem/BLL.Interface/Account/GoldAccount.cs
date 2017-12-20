@@ -5,12 +5,7 @@ namespace BLL.Interface.Account
     [Serializable]
     public class GoldAccount : Account
     {
-        public GoldAccount(string accountNumber, string name) : base(accountNumber, name)
-        {
-
-        }
-
-        public GoldAccount(int id, string accountNumber, string name, decimal balance, int benefitPoints) : base(id, accountNumber, name, balance, benefitPoints)
+        public GoldAccount(string accountNumber) : base(accountNumber)
         {
 
         }
