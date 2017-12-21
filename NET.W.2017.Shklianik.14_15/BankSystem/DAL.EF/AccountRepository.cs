@@ -30,6 +30,7 @@ namespace DAL.EF
                         var accountType = GetOrCreateType(db, account);
 
                         var dbAccount = new Account();
+                        db.Accounts.Add(dbAccount);
                         UpdateAccount(db, dbAccount, account, accountOwner, accountType);
 
                         transaction.Commit();
@@ -112,15 +113,15 @@ namespace DAL.EF
             }
         }
 
-        public IEnumerable<DalAccount> GetAccounts(Predicate<DalAccount> predicate)
+        public IEnumerable<DalAccount> GetAccounts(string ownerEmail)
         {
-            if (ReferenceEquals(predicate, null))
+            if (string.IsNullOrWhiteSpace(ownerEmail))
             {
-                throw new ArgumentException($"{nameof(predicate)} is invalid.", nameof(predicate));
+                throw new ArgumentException($"{nameof(ownerEmail)} is invalid.", nameof(ownerEmail));
             }
             using (var db = new AccountContext())
             {
-                return db.Accounts.Select(acc => Serialize(acc)).Where(a => predicate(a));
+                return db.Accounts.Where(a => a.AccountOwner.Email == ownerEmail).AsEnumerable().Select(Serialize).ToList();
             }
         }
 
@@ -151,7 +152,7 @@ namespace DAL.EF
 
         private Owner GetOrCreateOwner(AccountContext db, DalAccount account)
         {
-            Owner owner = db.Owners.Find(account.OwnerEmail, account.OwnerFirstName, account.OwnerSecondName);
+            Owner owner = db.Owners.FirstOrDefault(dbAccount => dbAccount.Email == account.OwnerEmail);
 
             if (!ReferenceEquals(owner, null)) return owner;
             owner = new Owner
@@ -168,7 +169,7 @@ namespace DAL.EF
 
         private AccountType GetOrCreateType(AccountContext db, DalAccount account)
         {
-            AccountType accountType = db.AccountTypes.Find(account.AccountType);
+            AccountType accountType = db.AccountTypes.FirstOrDefault(at =>at.Type == account.AccountType);
 
             if (!ReferenceEquals(accountType, null)) return accountType;
             accountType = new AccountType

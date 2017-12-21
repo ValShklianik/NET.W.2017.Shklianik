@@ -1,101 +1,131 @@
-﻿<div class="jumbotron">
-    <div v-show="!logged">
-        <form class="form-horizontal" role="form" method="POST" action="/register">
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <h2>Register New User</h2>
-                    <hr>
+﻿<div id="app">
+    <add-account-component inline-template>
+        <div id="add-account-form">
+            <form class="form-horizontal" role="form">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <h2>Add new account</h2>
+                        <hr>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 field-label-responsive">
-                    <label for="name">Name</label>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i>
+                <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="firstname">First name</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                                <input type="text" name="firstname" class="form-control" id="firstname"
+                                       placeholder="John Doe" required autofocus v-model="account.FirstName">
                             </div>
-                            <input type="text" name="name" class="form-control" id="name"
-                                    placeholder="John Doe" required autofocus v-model="form.firstname">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control-feedback">
+                            <span class="text-danger align-middle">
+                                <!-- Put name validation error messages here -->
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <!-- Put name validation error messages here -->
-                        </span>
+                <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="lastname">Last name</label>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 field-label-responsive">
-                    <label for="email">E-Mail Address</label>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                                <input type="text" name="lasttname" class="form-control" id="lastname"
+                                       placeholder="John Doe" required autofocus v-model="account.LastName">
                             </div>
-                            <input type="text" name="email" class="form-control" id="email"
-                                    placeholder="you@example.com" required autofocus v-model="form.email">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control-feedback">
+                            <span class="text-danger align-middle">
+                                <!-- Put name validation error messages here -->
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <!-- Put e-mail validation error messages here -->
-                        </span>
+                <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="email">Email</label>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 field-label-responsive">
-                    <label for="password">Password</label>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group has-danger">
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                                <input type="text" name="email" class="form-control" id="email"
+                                       placeholder="John Doe" required autofocus v-model="account.Email">
                             </div>
-                            <input type="password" name="password" class="form-control" id="password"
-                                    placeholder="Password" required v-model="form.password">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control-feedback">
+                            <span class="text-danger align-middle">
+                                <!-- Put name validation error messages here -->
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <i class="fa fa-close"> Example Error Message</i>
-                        </span>
+                <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="email">Email</label>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 field-label-responsive">
-                    <label for="password">Confirm Password</label>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div class="input-group-addon" style="width: 2.6rem">
-                                <i class="fa fa-repeat"></i>
-                            </div>
-                            <input type="password" name="password-confirmation" class="form-control"
-                                    id="password-confirm" placeholder="Password" required v-model="form.confirm_password">
+                    <select class="custom-select" v-model="account.AccountType">
+                        <option value="base" selected>Base</option>
+                        <option value="gold">Gold</option>
+                        <option value="platinum">Platinum</option>
+                    </select>
+                    <div class="col-md-3">
+                        <div class="form-control-feedback">
+                            <span class="text-danger align-middle">
+                                <!-- Put name validation error messages here -->
+                            </span>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6" v-on:click="register()">
-                    <input type="button" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</input>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <input type="button" class="btn btn-success" value="Create" v-on:click="addAccount()">
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
+    </add-account-component>
+    <account-list-component inline-template>
+        <div id="account-list">
+            <table class="table">
+                <thead class="thead-default">
+                    <tr>
+                        <th>Account number</th>
+                        <th>Owner Name</th>
+                        <th>Owner Email</th>
+                        <th>Balance</th>
+                        <th>Benefit points</th>
+                        <th>Deposit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="account"
+                        v-for="account in accounts">
+                        <th scope="row">{{account.AccountNumber}}</th>
+                        <td>{{account.Name}}</td>
+                        <td>{{account.OwnerEmail}}</td>
+                        <td>{{account.Balance}}</td>
+                        <td>{{account.BenefitPoints}}</td>
+                        <td>
+                            <deposit-component :account_number="account.AccountNumber">
+                            </deposit-component>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </account-list-component>
 </div>

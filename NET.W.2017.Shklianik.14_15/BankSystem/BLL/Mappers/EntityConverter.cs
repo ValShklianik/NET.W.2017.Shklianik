@@ -23,9 +23,8 @@ namespace BLL.Mappers
 
         public static Account FromDalAccount(DalAccount account)
         {
-            Account newAccount = (Account) Activator.CreateInstance(GetBllAccountType(account.AccountType));
+            Account newAccount = (Account) Activator.CreateInstance(GetBllAccountType(account.AccountType), account.AccountNumber);
             newAccount.Id = account.Id;
-            newAccount.AccountNumber = account.AccountNumber;
             newAccount.Balance = account.Balance;
             newAccount.BenefitPoints = account.BenefitPoints;
             newAccount.OwnerFirstName = account.OwnerFirstName;

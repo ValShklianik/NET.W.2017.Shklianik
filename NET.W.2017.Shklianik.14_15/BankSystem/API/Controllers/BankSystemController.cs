@@ -13,16 +13,29 @@ using BLL.Interface.AccountIdCreatorService;
 
 namespace API.Controllers
 {
-    //[Authorize]
+    public class InitAccount
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string AccountType { get; set; }
+    }
+
+    public class UpdteAccount
+    {
+        public decimal Value { get; set; }
+    }
+
+    //[Authorize]   
     public class BankSystemController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        public string Get()
         {
             IKernel resolver = new StandardKernel();
             resolver.ConfigurateResolver();
             var service = resolver.Get<IAccountService>();
-            return service.GetAccounts(acc => true).Select(acc => new JavaScriptSerializer().Serialize(acc));
+            return new JavaScriptSerializer().Serialize(service.GetAccounts("segennikita@gmail.com"));
         }
 
         // GET api/<controller>/5
@@ -31,29 +44,38 @@ namespace API.Controllers
             IKernel resolver = new StandardKernel();
             resolver.ConfigurateResolver();
             var service = resolver.Get<IAccountService>();
-            return new JavaScriptSerializer().Serialize(service.GetAccountInfo(accountId)));
+            return new JavaScriptSerializer().Serialize(service.GetAccountInfo(accountId));
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value, [FromBody]string accountType)
+        public void Post([FromBody]InitAccount values)
         {
-            Dictionary<string, AccountType> accountTypes = new Dictionary<string, AccountType>();
-            accountTypes.Add("base", AccountType.Base);
-            accountTypes.Add("gold", AccountType.Gold);
-            accountTypes.Add("platinum", AccountType.Platinum);
+            Dictionary<string, AccountType> accountTypes = new Dictionary<string, AccountType>
+            {
+                {"base", AccountType.Base},
+                {"gold", AccountType.Gold},
+                {"platinum", AccountType.Platinum}
+            };
             IKernel resolver = new StandardKernel();
             resolver.ConfigurateResolver();
             var service = resolver.Get<IAccountService>();
-            service.OpenAccount(value, accountTypes[accountType], resolver.Get<IAccountNumberCreator>());
+            service.OpenAccount(values.FirstName, values.LastName, values.Email, accountTypes[values.AccountType], resolver.Get<IAccountNumberCreator>());
         }
 
         // PUT api/<controller>/5
-        public void Put(string accounntNumber, [FromBody]decimal value)
+        public void Put(string accounntNumber, [FromBody]UpdteAccount value)
         {
             IKernel resolver = new StandardKernel();
             resolver.ConfigurateResolver();
             var service = resolver.Get<IAccountService>();
-            service.Deposit(accounntNumber, value);
+            if (value.Value > 0)
+            {
+                service.Deposit(accounntNumber, value.Value);
+            }
+            else
+            {
+                service.Withdraw(accounntNumber, -value.Value);
+            }
         }
 
         // DELETE api/<controller>/5

@@ -42,6 +42,6 @@ namespace DAL.Interface.Interfaces
         /// </summary>
         /// <returns>All accounts contained in the repository.</returns>
         /// Thrown when an exception occurred in repository.
-        IEnumerable<DalAccount> GetAccounts(Predicate<DalAccount> predicate);
+        IEnumerable<DalAccount> GetAccounts(string ownerEmaile);
     }
 }

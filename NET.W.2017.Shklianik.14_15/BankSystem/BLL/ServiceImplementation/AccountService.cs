@@ -19,7 +19,7 @@ namespace BLL.ServiceImplementation
             this.repository = repository;
         }
 
-        public string OpenAccount(string name, AccountType accountType, IAccountNumberCreator creator)
+        public string OpenAccount(string firstName, string lastName, string email, AccountType accountType, IAccountNumberCreator creator)
         {
             Account account;
             string accountNumber = creator.Create();
@@ -41,7 +41,9 @@ namespace BLL.ServiceImplementation
                     account = new BaseAccount(accountNumber);
                     break;
             }
-
+            account.OwnerFirstName = firstName;
+            account.OwnerSecondName = lastName;
+            account.OwnerEmail = email;
             repository.AddAccount(EntityConverter.ToDalAccount(account));
 
             return accountNumber;
@@ -79,11 +81,10 @@ namespace BLL.ServiceImplementation
             return account;
         }
 
-        public IEnumerable<Account> GetAccounts(Predicate<Account> predicate)
+        public IEnumerable<Account> GetAccounts(string ownerEmail)
         {
-            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
-            bool DalPredicte(DalAccount dalAccount) => predicate(EntityConverter.FromDalAccount(dalAccount));
-            return repository.GetAccounts(DalPredicte).Select(EntityConverter.FromDalAccount);
+            if (string.IsNullOrWhiteSpace(ownerEmail)) throw new ArgumentNullException(nameof(ownerEmail));
+            return repository.GetAccounts(ownerEmail).Select(EntityConverter.FromDalAccount);
         }
     }
 }

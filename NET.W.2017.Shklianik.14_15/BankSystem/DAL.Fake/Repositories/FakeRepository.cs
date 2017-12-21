@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DAL.Interface.DTO;
 using DAL.Interface.Interfaces;
 
@@ -41,10 +42,9 @@ namespace DAL.Fake.Repositories
             repository.Remove(account);
         }
 
-        public IEnumerable<DalAccount> GetAccounts(Predicate<DalAccount> predicate)
+        public IEnumerable<DalAccount> GetAccounts(string ownerEmail)
         {
-            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
-            return repository.FindAll(predicate);
+            return repository.Where(a => a.OwnerEmail == ownerEmail);
         }
     }
 }
