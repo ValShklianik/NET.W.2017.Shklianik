@@ -33,17 +33,17 @@ namespace BLL.Tests
             AccCount = 0;
             mockNumberGuid = new Mock<IAccountNumberCreator>();
             mockNumberGuid.Setup(num => num.Create()).Returns(() => $"account{AccCount++}");
-            service.OpenAccount("First", AccountType.Platinum, mockNumberGuid.Object);
-            service.OpenAccount("Second", AccountType.Gold, mockNumberGuid.Object);
-            service.OpenAccount("Third", AccountType.Base, mockNumberGuid.Object);
+            service.OpenAccount("First", "Name", "1", AccountType.Platinum, mockNumberGuid.Object);
+            service.OpenAccount("Second", "Name", "2", AccountType.Gold, mockNumberGuid.Object);
+            service.OpenAccount("Third", "Name", "3", AccountType.Base, mockNumberGuid.Object);
         }
 
-        [TestCase("First Accounnt", AccountType.Platinum, ExpectedResult = typeof(PlatinumAccount))]
-        [TestCase("Second Accounnt", AccountType.Gold, ExpectedResult = typeof(GoldAccount))]
-        [TestCase("Third Accounnt", AccountType.Base, ExpectedResult = typeof(BaseAccount))]
-        public Type OpenAccountTest(string name, AccountType accountType)
+        [TestCase("First", " Accounnt", "1", AccountType.Platinum, ExpectedResult = typeof(PlatinumAccount))]
+        [TestCase("Second", "Accounnt", "2", AccountType.Gold, ExpectedResult = typeof(GoldAccount))]
+        [TestCase("Third", "Accounnt", "3", AccountType.Base, ExpectedResult = typeof(BaseAccount))]
+        public Type OpenAccountTest(string firstname, string lastname, string email, AccountType accountType)
         {
-            string accontNummber = service.OpenAccount(name, accountType, new AccountNumberCreator());
+            service.OpenAccount(firstname, lastname, email, accountType, new AccountNumberCreator());
 
             return typeof(BaseAccount);
         }

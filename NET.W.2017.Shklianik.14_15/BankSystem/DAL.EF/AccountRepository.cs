@@ -52,7 +52,7 @@ namespace DAL.EF
             }
             using (var db = new AccountContext())
             {
-                Account account = db.Accounts.Find(number);
+                Account account = db.Accounts.FirstOrDefault(acc => acc.AccountNumber == number);
 
                 return Serialize(account);
             }
@@ -102,6 +102,7 @@ namespace DAL.EF
                     {
                         var dbAccount = db.Accounts.Find(account.Id);
                         if (!ReferenceEquals(dbAccount, null)) db.Accounts.Remove(dbAccount);
+                        db.SaveChanges();
                         transaction.Commit();
                     }
                     catch (Exception e)
@@ -143,7 +144,7 @@ namespace DAL.EF
         private void UpdateAccount(AccountContext db, Account dbAccount, DalAccount account, Owner accountOwner, AccountType accountType)
         {
             dbAccount.AccountType = accountType;
-            dbAccount.AccountOwner = accountOwner;
+            dbAccount.AccountOwnerId = accountOwner.Id;
             dbAccount.CurrentSum = account.Balance;
             dbAccount.BonusPoints = account.BenefitPoints;
             dbAccount.AccountNumber = account.AccountNumber;

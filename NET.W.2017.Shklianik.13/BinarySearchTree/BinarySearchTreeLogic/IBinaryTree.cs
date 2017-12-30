@@ -35,7 +35,7 @@ namespace BinarySearchTreeLogic
         /// finds the number of occurrences of values in the tree
         /// </summary>
         /// <param name="value"></param>
-        /// <returnsЮthe number of occurrences of values in the tree</returns>
+        /// <returns>the number of occurrences of values in the tree</returns>
         int Find(T value);
     }
 }

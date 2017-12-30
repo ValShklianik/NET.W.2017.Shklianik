@@ -245,6 +245,10 @@
     <Compile Include="Migrations\201712202200284_AddAccountMigration.Designer.cs">
       <DependentUpon>201712202200284_AddAccountMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712301119042_Add key migratio.cs" />
+    <Compile Include="Migrations\201712301119042_Add key migratio.Designer.cs">
+      <DependentUpon>201712301119042_Add key migratio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -351,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712202200284_AddAccountMigration.resx">
       <DependentUpon>201712202200284_AddAccountMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712301119042_Add key migratio.resx">
+      <DependentUpon>201712301119042_Add key migratio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

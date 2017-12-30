@@ -16,7 +16,7 @@ Vue.component('add-account-component',
             addAccount: function() {
                 $.ajax({
                     method: 'POST',
-                    url: 'api/BankSystem',
+                    url: 'api/BankSystem/add',
                     data: this.account
                 }).then(function (resp) {
                     console.log(resp);
@@ -41,8 +41,8 @@ Vue.component('deposit-component',
         methods: {
             updateAccount: function (accountNumber, summ) {
                 $.ajax({
-                    method: 'PUT',
-                    url: 'api/BankSystem?accountNumber=' + accountNumber,
+                    method: 'POST',
+                    url: 'api/BankSystem/' + accountNumber + "/update",
                     data: {
                         value: summ
                     }
@@ -52,8 +52,8 @@ Vue.component('deposit-component',
             },
             deleteAccount: function (accountNumber) {
                 $.ajax({
-                    method: 'DELETE',
-                    url: 'api/BankSystem?accountNumber=' + accountNumber
+                    method: 'GET',
+                    url: 'api/BankSystem/' + accountNumber + "/delete"
                 }).then(() => {
 
                 });
@@ -73,7 +73,7 @@ Vue.component('account-list-component',
             updateList: function () {
                 $.ajax({
                     method: 'GET',
-                    url: 'api/BankSystem'
+                    url: 'api/BankSystem/search?email=segennikita@gmail.com'
                 }).then(resp => {
                     this.accounts = JSON.parse(resp);
                 });
