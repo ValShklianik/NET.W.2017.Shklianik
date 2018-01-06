@@ -49,6 +49,15 @@
   <ItemGroup>
     <Compile Include="AccountRepository.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="Migrations\201712200426185_InitialCreate.cs" />
+    <Compile Include="Migrations\201712200426185_InitialCreate.Designer.cs">
+      <DependentUpon>201712200426185_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801061409304_Remove fields.cs" />
+    <Compile Include="Migrations\201801061409304_Remove fields.Designer.cs">
+      <DependentUpon>201801061409304_Remove fields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\Owner.cs" />
@@ -63,6 +72,14 @@
       <Project>{9501e6ea-aa42-46b3-b9aa-ee8aec8697c9}</Project>
       <Name>DAL.Interface</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201712200426185_InitialCreate.resx">
+      <DependentUpon>201712200426185_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801061409304_Remove fields.resx">
+      <DependentUpon>201801061409304_Remove fields.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

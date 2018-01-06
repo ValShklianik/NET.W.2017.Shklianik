@@ -19,7 +19,7 @@ namespace BLL.ServiceImplementation
             this.repository = repository;
         }
 
-        public string OpenAccount(string firstName, string lastName, string email, AccountType accountType, IAccountNumberCreator creator)
+        public string OpenAccount(string email, AccountType accountType, IAccountNumberCreator creator)
         {
             Account account;
             string accountNumber = creator.Create();
@@ -41,8 +41,6 @@ namespace BLL.ServiceImplementation
                     account = new BaseAccount(accountNumber);
                     break;
             }
-            account.OwnerFirstName = firstName;
-            account.OwnerSecondName = lastName;
             account.OwnerEmail = email;
             repository.AddAccount(EntityConverter.ToDalAccount(account));
 

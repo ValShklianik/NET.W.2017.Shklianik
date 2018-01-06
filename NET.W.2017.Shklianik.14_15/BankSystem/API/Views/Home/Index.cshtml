@@ -1,111 +1,160 @@
 ﻿<div id="app">
-    <add-account-component inline-template>
-        <div id="add-account-form">
-            <form class="form-horizontal" role="form">
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                        <h2>Add new account</h2>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 field-label-responsive">
-                        <label for="firstname">First name</label>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                                <input type="text" name="firstname" class="form-control" id="firstname"
-                                       placeholder="John Doe" required autofocus v-model="account.FirstName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-control-feedback">
-                            <span class="text-danger align-middle">
-                                <!-- Put name validation error messages here -->
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 field-label-responsive">
-                        <label for="lastname">Last name</label>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                                <input type="text" name="lasttname" class="form-control" id="lastname"
-                                       placeholder="John Doe" required autofocus v-model="account.LastName">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-control-feedback">
-                            <span class="text-danger align-middle">
-                                <!-- Put name validation error messages here -->
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 field-label-responsive">
-                        <label for="email">Email</label>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                                <input type="text" name="email" class="form-control" id="email"
-                                       placeholder="John Doe" required autofocus v-model="account.Email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-control-feedback">
-                            <span class="text-danger align-middle">
-                                <!-- Put name validation error messages here -->
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 field-label-responsive">
-                        <label for="email">Email</label>
-                    </div>
-                    <select class="custom-select" v-model="account.AccountType">
-                        <option value="base" selected>Base</option>
-                        <option value="gold">Gold</option>
-                        <option value="platinum">Platinum</option>
-                    </select>
-                    <div class="col-md-3">
-                        <div class="form-control-feedback">
-                            <span class="text-danger align-middle">
-                                <!-- Put name validation error messages here -->
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                        <input type="button" class="btn btn-success" value="Create" v-on:click="addAccount()">
-                    </div>
-                </div>
-            </form>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Bank system", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" v-on:click="logout()">Logout</a></li>
+                </ul>
+            </div>
         </div>
-    </add-account-component>
-    <account-list-component inline-template>
+    </div>
+    <auth-component v-if="!user_info"
+                    :user_info="user_info"
+                    inline-template>
+        <div id="auth-forms">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="panel panel-login">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <a href="#" id="login-form-link"
+                                           :class="active == 'login' ? 'active' : ''"
+                                           v-on:click="setActive('login')">Login</a>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <a href="#" id="register-form-link"
+                                           :class="active == 'register' ? 'active' : ''"
+                                           v-on:click="setActive('register')">Register</a>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form id="login-form" v-if="active == 'login'">
+                                            <div class="form-group">
+                                                <input type="text" name="useremail" id="useremail" tabindex="1" class="form-control" placeholder="Email" v-model="form.email">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" v-model="form.password">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="button"
+                                                               name="login-submit"
+                                                               id="login-submit"
+                                                               tabindex="3"
+                                                               class="form-control btn btn-login"
+                                                               value="Log In"
+                                                               v-on:click="loginClickHandler()">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="text-center">
+                                                            <a tabindex="4" class="forgot-password">Forgot Password?</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form id="register-form" v-if="active == 'register'">
+                                            <div class="form-group">
+                                                <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" v-model="form.email">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" v-model="form.password">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" v-model="form.confirm_password">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="firstname" id="firstname" tabindex="3" class="form-control" placeholder="First Name" v-model="form.firstname">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="lastname" id="lastname" tabindex="4" class="form-control" placeholder="Last Name" v-model="form.lastname">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="button"
+                                                               name="register-submit"
+                                                               id="register-submit"
+                                                               tabindex="5"
+                                                               class="form-control btn btn-register"
+                                                               value="Register Now"
+                                                               v-on:click="registerClickHandler()">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </auth-component>
+    <account-list-component v-if="!!user_info"
+                            :user_info="user_info"
+                            inline-template>
         <div id="account-list">
+            <add-account-component v-if="!!user_info"
+                                   :user_info="user_info"
+                                   :accounts="accounts"
+                                   inline-template>
+                <div id="add-account-form">
+                    <form class="form-horizontal">
+                        <div class="form-group form-row">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="init-balance">Initial balance</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input type="number" name="init-balance" id="init-balance" class="form-control" autofocus v-model="initialSum">
+                                        <span class="input-group-addon">.00</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="account-type">Account type</label>
+                                    <select class="custom-select form-control" id="account-type" v-model="accountType">
+                                        <option value="base" selected>Base</option>
+                                        <option value="gold">Gold</option>
+                                        <option value="platinum">Platinum</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-row">
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-1">
+                                    <input type="button" class="btn btn-lg btn-success form-control" value="Create" v-on:click="addAccount()">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </add-account-component>
             <table class="table">
                 <thead class="thead-default">
                     <tr>
                         <th>Account number</th>
-                        <th>Owner Name</th>
-                        <th>Owner Email</th>
                         <th>Balance</th>
                         <th>Benefit points</th>
                         <th>Deposit</th>
@@ -115,12 +164,11 @@
                     <tr class="account"
                         v-for="account in accounts">
                         <th scope="row">{{account.AccountNumber}}</th>
-                        <td>{{account.Name}}</td>
-                        <td>{{account.OwnerEmail}}</td>
                         <td>{{account.Balance}}</td>
                         <td>{{account.BenefitPoints}}</td>
                         <td>
-                            <deposit-component :account_number="account.AccountNumber">
+                            <deposit-component :account_number="account.AccountNumber"
+                                               :user_info="user_info">
                             </deposit-component>
                         </td>
                     </tr>

@@ -10,7 +10,7 @@ namespace BLL.Interface.AccountService
 {
     public interface IAccountService
     {
-        string OpenAccount(string firstName, string lastName, string email, AccountType accountType, IAccountNumberCreator creator);
+        string OpenAccount(string email, AccountType accountType, IAccountNumberCreator creator);
 
         void Deposit(string accountNumber, decimal amount);
 

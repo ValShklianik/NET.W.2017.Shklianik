@@ -26,35 +26,33 @@ namespace API.Controllers
         public decimal Value { get; set; }
     }
 
-    //[Authorize]   
+    [Authorize]   
     [RoutePrefix("api/BankSystem")]
     public class BankSystemController : ApiController
     {
         // GET api/<controller>
         [Route("search"), HttpGet]
-        public string Get()
+        public string GetAccounts([FromUri] string email)
         {
             IKernel resolver = new StandardKernel();
             resolver.ConfigurateResolver();
             var service = resolver.Get<IAccountService>();
-            string email = null;
-            if (Request.Properties.ContainsKey("email")) email = (string)Request.Properties["email"];
             return new JavaScriptSerializer().Serialize(service.GetAccounts(email));
         }
 
         // GET api/<controller>/5
         [Route("{accountNumber}/detail"), HttpGet]
-        public string Get(string accountId)
+        public string GetAccountInfo(string accountNumber)
         {
             IKernel resolver = new StandardKernel();
             resolver.ConfigurateResolver();
             var service = resolver.Get<IAccountService>();
-            return new JavaScriptSerializer().Serialize(service.GetAccountInfo(accountId));
+            return new JavaScriptSerializer().Serialize(service.GetAccountInfo(accountNumber));
         }
 
         // POST api/<controller>
         [Route("add"), HttpPost]
-        public void Add([FromBody]InitAccount values)
+        public string Add([FromBody]InitAccount values)
         {
             Dictionary<string, AccountType> accountTypes = new Dictionary<string, AccountType>
             {
@@ -65,7 +63,7 @@ namespace API.Controllers
             IKernel resolver = new StandardKernel();
             resolver.ConfigurateResolver();
             var service = resolver.Get<IAccountService>();
-            service.OpenAccount(values.FirstName, values.LastName, values.Email, accountTypes[values.AccountType], resolver.Get<IAccountNumberCreator>());
+            return service.OpenAccount(values.Email, accountTypes[values.AccountType], resolver.Get<IAccountNumberCreator>());
         }
 
         // PUT api/<controller>/5

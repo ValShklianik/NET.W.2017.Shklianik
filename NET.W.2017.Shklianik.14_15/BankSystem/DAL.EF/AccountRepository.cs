@@ -135,8 +135,6 @@ namespace DAL.EF
                 AccountNumber = account.AccountNumber,
                 Balance = account.CurrentSum,
                 BenefitPoints = account.BonusPoints,
-                OwnerFirstName = account.AccountOwner.FirstName,
-                OwnerSecondName = account.AccountOwner.SecondName,
                 OwnerEmail = account.AccountOwner.Email,
             };
         }
@@ -158,9 +156,7 @@ namespace DAL.EF
             if (!ReferenceEquals(owner, null)) return owner;
             owner = new Owner
             {
-                Email = account.OwnerEmail,
-                FirstName = account.OwnerFirstName,
-                SecondName = account.OwnerSecondName
+                Email = account.OwnerEmail
             };
             db.Owners.Add(owner);
             db.SaveChanges();

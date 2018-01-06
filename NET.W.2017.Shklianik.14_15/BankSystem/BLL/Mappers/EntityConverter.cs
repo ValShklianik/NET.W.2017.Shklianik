@@ -13,8 +13,6 @@ namespace BLL.Mappers
                 Id = account.Id,
                 AccountType = account.GetType().ToString(),
                 AccountNumber = account.AccountNumber,
-                OwnerFirstName = account.OwnerFirstName,
-                OwnerSecondName = account.OwnerSecondName,
                 OwnerEmail = account.OwnerEmail,
                 Balance = account.Balance,
                 BenefitPoints = account.BenefitPoints
@@ -27,8 +25,6 @@ namespace BLL.Mappers
             newAccount.Id = account.Id;
             newAccount.Balance = account.Balance;
             newAccount.BenefitPoints = account.BenefitPoints;
-            newAccount.OwnerFirstName = account.OwnerFirstName;
-            newAccount.OwnerSecondName = account.OwnerSecondName;
             newAccount.OwnerEmail = account.OwnerEmail;
 
             return newAccount;

@@ -10,8 +10,6 @@ namespace BLL.Interface.Account
         private string accountNumber;
         private decimal balance;
 
-        public string OwnerFirstName { get; set; }
-        public string OwnerSecondName { get; set; }
         public string OwnerEmail { get; set; }
         public int BenefitPoints { get; set; }
         public int Id { get; set; }
@@ -32,7 +30,7 @@ namespace BLL.Interface.Account
             }
         }
 
-        public string Name => OwnerFirstName + ' ' + OwnerSecondName;
+        public string Name => OwnerEmail;
 
         public decimal Balance
         {
