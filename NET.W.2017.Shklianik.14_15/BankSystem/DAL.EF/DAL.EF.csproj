@@ -57,9 +57,15 @@
     <Compile Include="Migrations\201801061409304_Remove fields.Designer.cs">
       <DependentUpon>201801061409304_Remove fields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801080015011_AddAccountOperation.cs" />
+    <Compile Include="Migrations\201801080015011_AddAccountOperation.Designer.cs">
+      <DependentUpon>201801080015011_AddAccountOperation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AccountOperation.cs" />
     <Compile Include="Models\AccountType.cs" />
+    <Compile Include="Models\OperationType.cs" />
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801061409304_Remove fields.resx">
       <DependentUpon>201801061409304_Remove fields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801080015011_AddAccountOperation.resx">
+      <DependentUpon>201801080015011_AddAccountOperation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

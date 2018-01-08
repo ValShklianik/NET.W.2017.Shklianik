@@ -14,5 +14,9 @@ namespace DAL.EF
         public DbSet<Owner> Owners { get; set; }
 
         public DbSet<AccountType> AccountTypes { get; set; }
+
+        public DbSet<OperationType> OperationTypes { get; set; }
+
+        public DbSet<AccountOperation> AccountOperations { get; set; }
     }
 }

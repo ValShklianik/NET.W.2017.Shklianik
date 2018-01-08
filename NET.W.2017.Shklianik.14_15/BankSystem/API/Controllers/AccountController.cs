@@ -346,6 +346,10 @@ namespace API.Controllers
                 return GetErrorResult(result);
             }
 
+            // отправка письма
+            await UserManager.SendEmailAsync(user.Id, "Регистррация",
+                       "Регистрация прошла успешно!");
+
             return Ok();
         }
 

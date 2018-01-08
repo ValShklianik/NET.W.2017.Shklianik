@@ -24,10 +24,10 @@ namespace ConsolePL
             var service = resolver.Get<IAccountService>();
             var creator = resolver.Get<IAccountNumberCreator>();
 
-            service.OpenAccount("Account", "owner", "1", AccountType.Base, creator);
-            service.OpenAccount("Account", "owner", "2", AccountType.Base, creator);
-            service.OpenAccount("Account", "owner", "3", AccountType.Gold, creator);
-            service.OpenAccount("Account", "owner", "4", AccountType.Platinum, creator);
+            service.OpenAccount("1", AccountType.Base, creator);
+            service.OpenAccount("2", AccountType.Base, creator);
+            service.OpenAccount("3", AccountType.Gold, creator);
+            service.OpenAccount("4", AccountType.Platinum, creator);
 
             var creditNumbers = service.GetAccounts("1").Select(acc => acc.AccountNumber).ToArray();
 

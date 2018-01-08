@@ -59,11 +59,11 @@ namespace API
             //    appId: "",
             //    appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "603210826072-nuiohoioltjkajuivhk6rsechik5oov6.apps.googleusercontent.com",
+                ClientSecret = "pqpn5RiSYM7z6NNur8SDdMTP"
+            });
         }
     }
 }

@@ -33,6 +33,18 @@ namespace DAL.EF
                         db.Accounts.Add(dbAccount);
                         UpdateAccount(db, dbAccount, account, accountOwner, accountType);
 
+                        var operationType = GetOrCreateOperationType(db, "Create");
+
+                        var operation = new AccountOperation
+                        {
+                            ChangedAccount = dbAccount,
+                            AccountOperationType = operationType,
+                            OperationValue = dbAccount.CurrentSum
+                        };
+
+                        db.AccountOperations.Add(operation);
+                        db.SaveChanges();
+
                         transaction.Commit();
                     }
                     catch (Exception e)
@@ -177,6 +189,24 @@ namespace DAL.EF
             db.SaveChanges();
 
             return accountType;
+        }
+
+        private OperationType GetOrCreateOperationType(AccountContext db, string opType)
+        {
+            var operationType = db.OperationTypes.FirstOrDefault(ot => ot.Type == opType);
+
+            if (ReferenceEquals(operationType, null))
+            {
+                operationType = new OperationType
+                {
+                    Type = opType
+                };
+                db.OperationTypes.Add(operationType);
+
+                db.SaveChanges();
+            }
+
+            return operationType;
         }
     }
 }
