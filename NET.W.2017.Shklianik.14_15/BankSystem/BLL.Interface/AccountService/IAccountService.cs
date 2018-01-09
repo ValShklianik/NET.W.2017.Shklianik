@@ -16,10 +16,10 @@ namespace BLL.Interface.AccountService
 
         void Withdraw(string accountNumber, decimal amount);
 
-        void DeleteAccount(string accountNumber);
+        void CloseAccount(string accountNumber);
 
         IEnumerable<Account.Account> GetAccounts(string ownerEmail);
 
-        Account.Account GetAccountInfo(string accountNumber);
+        DetailedAccount GetAccountInfo(string accountNumber);
     }
 }

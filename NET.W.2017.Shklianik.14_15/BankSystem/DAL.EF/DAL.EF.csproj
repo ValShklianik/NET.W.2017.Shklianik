@@ -61,6 +61,14 @@
     <Compile Include="Migrations\201801080015011_AddAccountOperation.Designer.cs">
       <DependentUpon>201801080015011_AddAccountOperation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801081940383_Add status to account.cs" />
+    <Compile Include="Migrations\201801081940383_Add status to account.Designer.cs">
+      <DependentUpon>201801081940383_Add status to account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801081954027_Change AccounntOperationMModel.cs" />
+    <Compile Include="Migrations\201801081954027_Change AccounntOperationMModel.Designer.cs">
+      <DependentUpon>201801081954027_Change AccounntOperationMModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountOperation.cs" />
@@ -88,6 +96,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801080015011_AddAccountOperation.resx">
       <DependentUpon>201801080015011_AddAccountOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801081940383_Add status to account.resx">
+      <DependentUpon>201801081940383_Add status to account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801081954027_Change AccounntOperationMModel.resx">
+      <DependentUpon>201801081954027_Change AccounntOperationMModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

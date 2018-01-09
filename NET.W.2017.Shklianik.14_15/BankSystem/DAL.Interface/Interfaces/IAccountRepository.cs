@@ -21,6 +21,14 @@ namespace DAL.Interface.Interfaces
         /// <returns>DalAccount or null if there is no such account in the repository.</returns>
         DalAccount GetAccount(string number);
 
+
+        /// <summary>
+        /// Returns the account with the specified <paramref name="number"/>.
+        /// </summary>
+        /// <param name="number">account id</param>
+        /// <returns>DalAccountDetailed or null if there is no such account in the repository.</returns>
+        DalAccountDetailed GetAccountHistory(string number);
+
         /// <summary>
         /// Updates account information.
         /// </summary>

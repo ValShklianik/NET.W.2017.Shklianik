@@ -43,9 +43,12 @@
     <Compile Include="AccountIdCreatorService\IAccountNumberCreator.cs" />
     <Compile Include="AccountService\IAccountService.cs" />
     <Compile Include="Account\Account.cs" />
+    <Compile Include="Account\AccountOperation.cs" />
     <Compile Include="Account\BaseAccount.cs" />
+    <Compile Include="Account\DetailedAccount.cs" />
     <Compile Include="Account\GoldAccount.cs" />
     <Compile Include="Account\PlatinumAccount.cs" />
+    <Compile Include="IEmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

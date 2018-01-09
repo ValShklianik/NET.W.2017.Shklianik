@@ -13,12 +13,12 @@ namespace DAL.EF.Models
         public int Id { get; set; }
 
         [Required]
-        public int AccountId { get; set; }
+        public int ChangedAccountId { get; set; }
 
         public virtual Account ChangedAccount { get; set; }
 
         [Required]
-        public int OperationTypeId { get; set; }
+        public int AccountOperationTypeId { get; set; }
 
         public virtual OperationType AccountOperationType { get; set; }
 

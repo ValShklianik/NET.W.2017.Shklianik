@@ -9,6 +9,8 @@ using BLL.ServiceImplementation;
 using DAL.Interface.DTO;
 using DAL.Interface.Interfaces;
 using Moq;
+using BLL.Interface;
+using System.Net.Mail;
 
 namespace BLL.Tests
 {
@@ -17,6 +19,7 @@ namespace BLL.Tests
     {
 
         private Mock<IAccountRepository> mockRepository;
+        private Mock<IEmailService> mockEmail;
         private List<DalAccount> accounts;
         private IAccountService service;
         private Mock<IAccountNumberCreator> mockNumberGuid;
@@ -28,8 +31,10 @@ namespace BLL.Tests
             mockRepository = new Mock<IAccountRepository>();
             accounts = new List<DalAccount>();
             mockRepository.Setup(rep => rep.AddAccount(It.IsAny<DalAccount>())).Callback<DalAccount>(account => accounts.Add(account));
+            mockEmail = new Mock<IEmailService>();
+            mockEmail.Setup(serv => serv.SendMail(It.IsAny<MailMessage>()));
 
-            service = new AccountService(mockRepository.Object);
+            service = new AccountService(mockRepository.Object, mockEmail.Object);
             AccCount = 0;
             mockNumberGuid = new Mock<IAccountNumberCreator>();
             mockNumberGuid.Setup(num => num.Create()).Returns(() => $"account{AccCount++}");

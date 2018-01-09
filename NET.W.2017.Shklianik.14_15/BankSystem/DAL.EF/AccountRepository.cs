@@ -35,15 +35,7 @@ namespace DAL.EF
 
                         var operationType = GetOrCreateOperationType(db, "Create");
 
-                        var operation = new AccountOperation
-                        {
-                            ChangedAccount = dbAccount,
-                            AccountOperationType = operationType,
-                            OperationValue = dbAccount.CurrentSum
-                        };
-
-                        db.AccountOperations.Add(operation);
-                        db.SaveChanges();
+                        CreateOperation(operationType, account.Balance, dbAccount, db);
 
                         transaction.Commit();
                     }
@@ -51,6 +43,66 @@ namespace DAL.EF
                     {
                         transaction.Rollback();
                         throw new RepositoryException("Add account error.", e);
+                    }
+                }
+            }
+        }
+
+        public DalAccountDetailed GetAccountHistory(string number)
+        {
+            if (string.IsNullOrWhiteSpace(number))
+            {
+                throw new ArgumentException($"{nameof(number)} is invalid.", nameof(number));
+            }
+            using (var db = new AccountContext())
+            {
+                Account account = db.Accounts.FirstOrDefault(acc => acc.AccountNumber == number);
+                if (ReferenceEquals(account, null)) throw new RepositoryException($"Can not find account with account number {number}");
+
+                return new DalAccountDetailed
+                {
+                    AccountObject = Serialize(account),
+                    Operations = db.AccountOperations.Where(op => op.ChangedAccountId == account.Id).Select(op => new DalAccountOperation {
+                        Id = op.Id,
+                        AccountId = account.Id,
+                        Operation = op.AccountOperationType.Type,
+                        OperationValue = op.OperationValue,
+                        OperationDate = op.OperationDate
+                    }).ToList()
+                };
+            }
+
+        }
+
+        public void UpdateAccount(DalAccount account)
+        {
+            if (ReferenceEquals(account, null))
+            {
+                throw new ArgumentNullException(nameof(account));
+            }
+
+            using (var db = new AccountContext())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    var dbAccount = db.Accounts.FirstOrDefault(acc => acc.Active == true && acc.AccountNumber == account.AccountNumber);
+                    if (ReferenceEquals(dbAccount, null)) throw new RepositoryException($"Can not find open account with account number {account.AccountNumber}");
+                    try
+                    {
+                        var accountOwner = GetOrCreateOwner(db, account);
+                        var accountType = GetOrCreateType(db, account);
+                        decimal diff = account.Balance - dbAccount.CurrentSum;
+                        string operation = diff > 0 ? "Deposit" : "Withdraw";
+                        var operationType = GetOrCreateOperationType(db, operation);
+
+                        CreateOperation(operationType, diff, dbAccount, db);
+                        UpdateAccount(db, dbAccount, account, accountOwner, accountType);
+                        transaction.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        transaction.Rollback();
+                        throw new RepositoryException("Update account error.", e);
                     }
                 }
             }
@@ -71,34 +123,6 @@ namespace DAL.EF
 
         }
 
-        public void UpdateAccount(DalAccount account)
-        {
-            if (ReferenceEquals(account, null))
-            {
-                throw new ArgumentNullException(nameof(account));
-            }
-
-            using (var db = new AccountContext())
-            {
-                using (var transaction = db.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        var dbAccount = db.Accounts.Find(account.Id);
-                        var accountOwner = GetOrCreateOwner(db, account);
-                        var accountType = GetOrCreateType(db, account);
-                        UpdateAccount(db, dbAccount, account, accountOwner, accountType);
-                        transaction.Commit();
-                    }
-                    catch (Exception e)
-                    {
-                        transaction.Rollback();
-                        throw new RepositoryException("Update account error.", e);
-                    }
-                }
-            }
-        }
-
         public void RemoveAccount(DalAccount account)
         {
             if (ReferenceEquals(account, null))
@@ -110,20 +134,39 @@ namespace DAL.EF
             {
                 using (var transaction = db.Database.BeginTransaction())
                 {
+                    var dbAccount = db.Accounts.FirstOrDefault(acc => acc.Active == true && acc.AccountNumber == account.AccountNumber);
+                    if (ReferenceEquals(dbAccount, null)) throw new RepositoryException($"Can not find open account with account number {account.AccountNumber}");
                     try
                     {
-                        var dbAccount = db.Accounts.Find(account.Id);
-                        if (!ReferenceEquals(dbAccount, null)) db.Accounts.Remove(dbAccount);
+                        dbAccount.Active = false;
+                        var operationType = GetOrCreateOperationType(db, "Close");
+
+                        CreateOperation(operationType, 0, dbAccount, db);
                         db.SaveChanges();
                         transaction.Commit();
                     }
                     catch (Exception e)
                     {
                         transaction.Rollback();
-                        throw new RepositoryException("Update account error.", e);
+                        throw new RepositoryException("Remove account error.", e);
                     }
                 }
             }
+        }
+
+        private AccountOperation CreateOperation(OperationType operationType, decimal value, Account account, AccountContext db)
+        {
+            var operation = new AccountOperation
+            {
+                ChangedAccount = account,
+                AccountOperationType = operationType,
+                OperationValue = value
+            };
+
+            db.AccountOperations.Add(operation);
+            db.SaveChanges();
+
+            return operation;
         }
 
         public IEnumerable<DalAccount> GetAccounts(string ownerEmail)
@@ -148,6 +191,7 @@ namespace DAL.EF
                 Balance = account.CurrentSum,
                 BenefitPoints = account.BonusPoints,
                 OwnerEmail = account.AccountOwner.Email,
+                Open = account.Active
             };
         }
 

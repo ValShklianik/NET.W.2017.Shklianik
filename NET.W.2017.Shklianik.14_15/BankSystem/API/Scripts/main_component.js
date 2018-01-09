@@ -50,12 +50,43 @@ Vue.component('add-account-component', _.merge({}, BaseComponent, {
     }
 }));
 
+Vue.component('account-details-component', _.merge({}, BaseComponent, {
+    template: '#account-details',
+    data: function () {
+        return {
+            account: null,
+            operations: []
+        };
+    },
+    props: _.concat(BaseComponent.props, ['account_number']),
+    methods: {
+        close: function () {
+            $('#myModal').modal('hide');
+            this.$parent.$emit('closeDetails', null);
+        }
+    },
+    mounted: function () {
+        var self = this;
+
+        self.makeRequest({
+            method: 'GET',
+            url: '/api/BankSystem/' + self.account_number + "/detail"
+        }).then((data) => {
+            data = JSON.parse(data);
+            _.each(data.Operations, (operation) => {
+                var d = new Date(parseInt(operation.OperationDate.match(/[0-9]+/i)[0]));
+                operation.OperationDate = [d.getDate(), d.getMonth() + 1, d.getFullYear()].join('.');
+                operation.OperationDate += ' ' + [d.getHours(), d.getMinutes(), d.getSeconds()].join(':');
+            });
+            self.operations = data.Operations;
+            self.account = data.AccountObject;
+            $('#myModal').modal('show');
+        });
+    }
+}));
+
 Vue.component('deposit-component', _.merge({}, BaseComponent, {
-    template: '<div claass="row">' +
-                '<input type="number" class="form-control" v-model="depositValue">' +
-                '<button type="button" class="btn btn-primary" @click="updateAccount(account_number, depositValue)">Update</button>' +
-                '<button type="button" class="btn btn-danger" @click="deleteAccount(account_number)">Delete</button>' +
-                '</div>',
+    template: '#deposit-component',
     data: function() {
         return {
             depositValue: 0
@@ -76,6 +107,9 @@ Vue.component('deposit-component', _.merge({}, BaseComponent, {
                 self.$parent.$emit('updateAccountsList');
             });
         },
+        selectAccount: function (accountNumber) {
+            this.$parent.$emit('closeDetails', accountNumber);
+        },
         deleteAccount: function (accountNumber) {
             var self = this;
 
@@ -93,7 +127,8 @@ Vue.component('account-list-component', _.merge({}, BaseComponent, {
     template: '#account-list',
     data: function () {
         return {
-            accounts: []
+            accounts: [],
+            selected_account: null
         };
     },
     methods: {
@@ -109,10 +144,14 @@ Vue.component('account-list-component', _.merge({}, BaseComponent, {
             }).then(resp => {
                 self.accounts = JSON.parse(resp);
             });
+        },
+        selectAccount: function (accounntNumber) {
+            this.selected_account = accounntNumber;
         }
     },
     mounted: function () {
         this.$on('updateAccountsList', this.updateList);
+        this.$on('closeDetails', this.selectAccount);
         this.updateList();
     }
 }));

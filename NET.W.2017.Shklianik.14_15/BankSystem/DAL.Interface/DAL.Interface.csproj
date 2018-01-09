@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\DalAccount.cs" />
+    <Compile Include="DTO\DalAccountDetailed.cs" />
+    <Compile Include="DTO\DalAccountOperation.cs" />
     <Compile Include="Exceptions\RepositoryException.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -46,5 +46,10 @@ namespace DAL.Fake.Repositories
         {
             return repository.Where(a => a.OwnerEmail == ownerEmail);
         }
+
+        public DalAccountDetailed GetAccountHistory(string number)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

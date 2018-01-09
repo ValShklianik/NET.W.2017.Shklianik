@@ -29,5 +29,13 @@ namespace DAL.EF.Models
         public virtual AccountType AccountType { get; set; }
 
         public virtual IEnumerable<AccountOperation> Operations { get; set; }
+
+        [DefaultValue(true)]
+        public bool Active { get; set; } 
+
+        public Account()
+        {
+            Active = true;
+        }
     }
 }

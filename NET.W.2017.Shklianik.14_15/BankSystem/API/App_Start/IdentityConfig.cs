@@ -7,6 +7,9 @@ using Microsoft.Owin;
 using API.Models;
 using System;
 using System.Configuration;
+using Ninject;
+using BLL.Interface;
+using DependencyResolver;
 
 namespace API
 {
@@ -55,26 +58,20 @@ namespace API
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // настройка логина, пароля отправителя
-            var from = ConfigurationManager.AppSettings["email"];
-            var pass = ConfigurationManager.AppSettings["password"];
-
-            // адрес и порт smtp-сервера, с которого мы и будем отправлять письмо
-            string mail_server = ConfigurationManager.AppSettings["mail_server"];
-            SmtpClient client = new SmtpClient(mail_server, 587);
-
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential(from, pass);
-            client.EnableSsl = true;
+            IKernel resolver = new StandardKernel();
+            resolver.ConfigurateResolver();
+            var service = resolver.Get<IEmailService>();
 
             // создаем письмо: message.Destination - адрес получателя
-            var mail = new MailMessage(from, message.Destination);
-            mail.Subject = message.Subject;
-            mail.Body = message.Body;
-            mail.IsBodyHtml = true;
+            var mail = new MailMessage()
+            {
+                Subject = message.Subject,
+                Body = message.Body,
+                IsBodyHtml = true
+            };
+            mail.To.Add(message.Destination);
 
-            return client.SendMailAsync(mail);
+            return service.SendMailAsync(mail);
         }
     }
 }

@@ -19,5 +19,7 @@ namespace DAL.Interface.DTO
         public int BenefitPoints { get; set; }
 
         public string OwnerEmail { get; set; }
+
+        public bool Open { get; set; }
     }
 }

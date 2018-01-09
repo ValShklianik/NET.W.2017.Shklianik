@@ -1,4 +1,5 @@
-﻿using BLL.Interface.AccountIdCreatorService;
+﻿using BLL.Interface;
+using BLL.Interface.AccountIdCreatorService;
 using BLL.Interface.AccountService;
 using BLL.ServiceImplementation;
 using DAL.EF;
@@ -12,6 +13,7 @@ namespace DependencyResolver
         public static void ConfigurateResolver(this IKernel kernel)
         {
             kernel.Bind<IAccountService>().To<AccountService>();
+            kernel.Bind<IEmailService>().To<MailService>();
             kernel.Bind<IAccountRepository>().To<AccountRepository>();
             //kernel.Bind<IRepository>().To<FakeRepository>().WithConstructorArgument("test.bin");
             kernel.Bind<IAccountNumberCreator>().To<AccountNumberCreator>();

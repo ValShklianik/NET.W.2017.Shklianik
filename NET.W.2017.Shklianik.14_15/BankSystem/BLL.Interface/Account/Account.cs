@@ -13,6 +13,7 @@ namespace BLL.Interface.Account
         public string OwnerEmail { get; set; }
         public int BenefitPoints { get; set; }
         public int Id { get; set; }
+        public bool Open { get; set; }
 
         public string AccountNumber
         {

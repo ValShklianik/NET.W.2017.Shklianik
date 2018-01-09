@@ -85,14 +85,12 @@ namespace API.Controllers
 
         // DELETE api/<controller>/5
         [Route("{accountNumber}/delete"), HttpGet]
-        public bool Remove(string accountNumber)
+        public void Remove(string accountNumber)
         {
             IKernel resolver = new StandardKernel();
             resolver.ConfigurateResolver();
             var service = resolver.Get<IAccountService>();
-            service.DeleteAccount(accountNumber);
-
-            return true;
+            service.CloseAccount(accountNumber);
         }
     }
 }

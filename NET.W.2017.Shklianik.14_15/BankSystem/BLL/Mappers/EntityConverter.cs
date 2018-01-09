@@ -15,7 +15,8 @@ namespace BLL.Mappers
                 AccountNumber = account.AccountNumber,
                 OwnerEmail = account.OwnerEmail,
                 Balance = account.Balance,
-                BenefitPoints = account.BenefitPoints
+                BenefitPoints = account.BenefitPoints,
+                Open = account.Open
             };
         }
 
@@ -26,6 +27,7 @@ namespace BLL.Mappers
             newAccount.Balance = account.Balance;
             newAccount.BenefitPoints = account.BenefitPoints;
             newAccount.OwnerEmail = account.OwnerEmail;
+            newAccount.Open = account.Open;
 
             return newAccount;
         }
